@@ -15,7 +15,7 @@
 // Package tests exports shared patterns for use by the other bytematcher packages
 package tests
 
-import . "github.com/richardlehane/siegfried/internal/bytematcher/patterns"
+import . "github.com/ross-spencer/siegfried/internal/bytematcher/patterns"
 
 // TestSequences are exported so they can be used by the other bytematcher packages.
 var TestSequences = []Sequence{

@@ -25,14 +25,14 @@ import (
 	"sync"
 	"time"
 
-	"github.com/richardlehane/siegfried"
-	"github.com/richardlehane/siegfried/internal/checksum"
-	"github.com/richardlehane/siegfried/internal/logger"
-	"github.com/richardlehane/siegfried/pkg/config"
-	"github.com/richardlehane/siegfried/pkg/core"
-	"github.com/richardlehane/siegfried/pkg/decompress"
-	"github.com/richardlehane/siegfried/pkg/reader"
-	"github.com/richardlehane/siegfried/pkg/writer"
+	"github.com/ross-spencer/siegfried"
+	"github.com/ross-spencer/siegfried/internal/checksum"
+	"github.com/ross-spencer/siegfried/internal/logger"
+	"github.com/ross-spencer/siegfried/pkg/config"
+	"github.com/ross-spencer/siegfried/pkg/core"
+	"github.com/ross-spencer/siegfried/pkg/decompress"
+	"github.com/ross-spencer/siegfried/pkg/reader"
+	"github.com/ross-spencer/siegfried/pkg/writer"
 )
 
 // defaults

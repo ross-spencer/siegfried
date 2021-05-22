@@ -5,7 +5,7 @@ import (
 	"io"
 	"testing"
 
-	"github.com/richardlehane/siegfried/internal/siegreader"
+	"github.com/ross-spencer/siegfried/internal/siegreader"
 )
 
 type node struct {

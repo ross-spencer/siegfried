@@ -25,18 +25,18 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/richardlehane/siegfried"
-	"github.com/richardlehane/siegfried/internal/chart"
-	"github.com/richardlehane/siegfried/pkg/config"
-	"github.com/richardlehane/siegfried/pkg/core"
-	"github.com/richardlehane/siegfried/pkg/loc"
-	"github.com/richardlehane/siegfried/pkg/mimeinfo"
-	"github.com/richardlehane/siegfried/pkg/pronom"
+	"github.com/ross-spencer/siegfried"
+	"github.com/ross-spencer/siegfried/internal/chart"
+	"github.com/ross-spencer/siegfried/pkg/config"
+	"github.com/ross-spencer/siegfried/pkg/core"
+	"github.com/ross-spencer/siegfried/pkg/loc"
+	"github.com/ross-spencer/siegfried/pkg/mimeinfo"
+	"github.com/ross-spencer/siegfried/pkg/pronom"
 
-	wd "github.com/richardlehane/siegfried/pkg/wikidata"
+	wd "github.com/ross-spencer/siegfried/pkg/wikidata"
 
-	"github.com/richardlehane/siegfried/pkg/reader"
-	"github.com/richardlehane/siegfried/pkg/sets"
+	"github.com/ross-spencer/siegfried/pkg/reader"
+	"github.com/ross-spencer/siegfried/pkg/sets"
 )
 
 var usage = `

@@ -25,8 +25,8 @@ import (
 	"log"
 	"strings"
 
-	"github.com/richardlehane/siegfried/pkg/config"
-	"github.com/richardlehane/siegfried/pkg/wikidata/internal/mappings"
+	"github.com/ross-spencer/siegfried/pkg/config"
+	"github.com/ross-spencer/siegfried/pkg/wikidata/internal/mappings"
 
 	"github.com/ross-spencer/spargo/pkg/spargo"
 )

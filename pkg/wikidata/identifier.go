@@ -23,9 +23,9 @@ import (
 	"strings"
 	"time"
 
-	"github.com/richardlehane/siegfried/internal/identifier"
-	"github.com/richardlehane/siegfried/pkg/config"
-	"github.com/richardlehane/siegfried/pkg/core"
+	"github.com/ross-spencer/siegfried/internal/identifier"
+	"github.com/ross-spencer/siegfried/pkg/config"
+	"github.com/ross-spencer/siegfried/pkg/core"
 )
 
 const unknown = "UNKNOWN"

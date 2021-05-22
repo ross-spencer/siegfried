@@ -3,7 +3,7 @@ package priority
 import (
 	"testing"
 
-	"github.com/richardlehane/siegfried/internal/persist"
+	"github.com/ross-spencer/siegfried/internal/persist"
 )
 
 func TestAdd(t *testing.T) {

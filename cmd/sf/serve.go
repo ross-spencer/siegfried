@@ -23,10 +23,10 @@ import (
 	"sync"
 	"time"
 
-	"github.com/richardlehane/siegfried"
-	"github.com/richardlehane/siegfried/internal/checksum"
-	"github.com/richardlehane/siegfried/pkg/config"
-	"github.com/richardlehane/siegfried/pkg/writer"
+	"github.com/ross-spencer/siegfried"
+	"github.com/ross-spencer/siegfried/internal/checksum"
+	"github.com/ross-spencer/siegfried/pkg/config"
+	"github.com/ross-spencer/siegfried/pkg/writer"
 )
 
 func handleErr(w http.ResponseWriter, status int, e error) {
@@ -239,7 +239,7 @@ const usage = `
 			<h1><a name="top">Siegfried server usage</a></h1>
 			<p>The siegfried server has two modes of identification:
 			<ul><li><a href="#get_request">GET request</a>, where a file or directory path is given in the URL and the server retrieves the file(s);</li>
-			<li><a href="#post_request">POST request</a>, where the file is sent over the network as form-data.</li></ul></p> 
+			<li><a href="#post_request">POST request</a>, where the file is sent over the network as form-data.</li></ul></p>
 			<h2>Default settings</h2>
 			<p>When starting the server, you can use regular sf flags to set defaults for the <i>nr</i>, <i>format</i>, <i>hash</i>, <i>z</i>, and <i>sig</i> parameters that will apply to all requests unless overridden. Logging options can also be set.<p>
 			<p>E.g. sf -nr -z -hash md5 -sig pronom-tika.sig -log p,w,e -serve localhost:5138</p>

@@ -18,9 +18,9 @@ package core
 import (
 	"errors"
 
-	"github.com/richardlehane/siegfried/internal/persist"
-	"github.com/richardlehane/siegfried/internal/siegreader"
-	"github.com/richardlehane/siegfried/pkg/config"
+	"github.com/ross-spencer/siegfried/internal/persist"
+	"github.com/ross-spencer/siegfried/internal/siegreader"
+	"github.com/ross-spencer/siegfried/pkg/config"
 )
 
 // Identifier describes the implementation of a signature format. E.g. there is a PRONOM identifier that implements the TNA's PRONOM format.

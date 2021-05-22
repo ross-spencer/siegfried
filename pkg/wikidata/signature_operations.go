@@ -24,11 +24,11 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/richardlehane/siegfried/internal/bytematcher/frames"
-	"github.com/richardlehane/siegfried/internal/identifier"
-	"github.com/richardlehane/siegfried/pkg/wikidata/internal/mappings"
+	"github.com/ross-spencer/siegfried/internal/bytematcher/frames"
+	"github.com/ross-spencer/siegfried/internal/identifier"
+	"github.com/ross-spencer/siegfried/pkg/wikidata/internal/mappings"
 
-	"github.com/richardlehane/siegfried/pkg/pronom"
+	"github.com/ross-spencer/siegfried/pkg/pronom"
 )
 
 // Globs match based on some pattern in the filename of a file. For

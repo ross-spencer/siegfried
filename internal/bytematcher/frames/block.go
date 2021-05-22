@@ -15,8 +15,8 @@
 package frames
 
 import (
-	"github.com/richardlehane/siegfried/internal/bytematcher/patterns"
-	"github.com/richardlehane/siegfried/internal/persist"
+	"github.com/ross-spencer/siegfried/internal/bytematcher/patterns"
+	"github.com/ross-spencer/siegfried/internal/persist"
 )
 
 func singleLen(f Frame) bool {

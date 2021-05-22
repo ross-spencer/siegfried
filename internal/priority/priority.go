@@ -22,8 +22,8 @@ import (
 	"sort"
 	"sync"
 
-	"github.com/richardlehane/siegfried/internal/persist"
-	"github.com/richardlehane/siegfried/pkg/core"
+	"github.com/ross-spencer/siegfried/internal/persist"
+	"github.com/ross-spencer/siegfried/pkg/core"
 )
 
 // a priority map links subordinate results to a list of priority results

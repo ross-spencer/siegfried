@@ -24,7 +24,7 @@ import (
 	"strconv"
 	"unicode/utf8"
 
-	"github.com/richardlehane/siegfried/internal/persist"
+	"github.com/ross-spencer/siegfried/internal/persist"
 )
 
 func init() {

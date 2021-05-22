@@ -20,9 +20,9 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/richardlehane/siegfried/internal/bytematcher/frames"
-	"github.com/richardlehane/siegfried/internal/bytematcher/patterns"
-	"github.com/richardlehane/siegfried/pkg/pronom/internal/mappings"
+	"github.com/ross-spencer/siegfried/internal/bytematcher/frames"
+	"github.com/ross-spencer/siegfried/internal/bytematcher/patterns"
+	"github.com/ross-spencer/siegfried/pkg/pronom/internal/mappings"
 )
 
 // This code produces siegfried bytematcher signatures from the relevant parts of PRONOM, Droid and Container XML signature files

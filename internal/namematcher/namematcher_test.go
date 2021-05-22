@@ -3,8 +3,8 @@ package namematcher
 import (
 	"testing"
 
-	"github.com/richardlehane/siegfried/internal/persist"
-	"github.com/richardlehane/siegfried/pkg/core"
+	"github.com/ross-spencer/siegfried/internal/persist"
+	"github.com/ross-spencer/siegfried/pkg/core"
 )
 
 var fmts = SignatureSet{"*.wav", "*.doc", "*.xls", "*.pdf", "*.ppt", "*.adoc.txt", "README"}

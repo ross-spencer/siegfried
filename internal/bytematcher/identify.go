@@ -18,9 +18,9 @@ import (
 	"fmt"
 
 	wac "github.com/richardlehane/match/fwac"
-	"github.com/richardlehane/siegfried/internal/siegreader"
-	"github.com/richardlehane/siegfried/pkg/config"
-	"github.com/richardlehane/siegfried/pkg/core"
+	"github.com/ross-spencer/siegfried/internal/siegreader"
+	"github.com/ross-spencer/siegfried/pkg/config"
+	"github.com/ross-spencer/siegfried/pkg/core"
 )
 
 // identify function - brings a new matcher into existence

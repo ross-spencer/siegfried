@@ -20,7 +20,7 @@ import (
 	"log"
 	"os"
 
-	"github.com/richardlehane/siegfried/pkg/config"
+	"github.com/ross-spencer/siegfried/pkg/config"
 	"github.com/ross-spencer/spargo/pkg/spargo"
 )
 

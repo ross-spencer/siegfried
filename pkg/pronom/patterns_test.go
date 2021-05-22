@@ -3,7 +3,7 @@ package pronom
 import (
 	"testing"
 
-	"github.com/richardlehane/siegfried/internal/bytematcher/patterns"
+	"github.com/ross-spencer/siegfried/internal/bytematcher/patterns"
 )
 
 func TestRange(t *testing.T) {

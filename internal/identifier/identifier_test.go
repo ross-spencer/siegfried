@@ -4,10 +4,10 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/richardlehane/siegfried/internal/bytematcher/frames"
-	"github.com/richardlehane/siegfried/pkg/core"
+	"github.com/ross-spencer/siegfried/internal/bytematcher/frames"
+	"github.com/ross-spencer/siegfried/pkg/core"
 
-	"github.com/richardlehane/siegfried/internal/bytematcher/patterns"
+	"github.com/ross-spencer/siegfried/internal/bytematcher/patterns"
 )
 
 // Globals to enable testing and comparison of Parseable results.

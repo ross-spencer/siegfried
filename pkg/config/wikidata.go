@@ -23,7 +23,7 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/richardlehane/siegfried/pkg/config/internal/wikidatasparql"
+	"github.com/ross-spencer/siegfried/pkg/config/internal/wikidatasparql"
 )
 
 // Wikidata configuration fields. NB. In alphabetical order.

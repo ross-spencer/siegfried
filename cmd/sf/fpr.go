@@ -23,8 +23,8 @@ import (
 	"os"
 	"strings"
 
-	"github.com/richardlehane/siegfried"
-	"github.com/richardlehane/siegfried/pkg/config"
+	"github.com/ross-spencer/siegfried"
+	"github.com/ross-spencer/siegfried/pkg/config"
 )
 
 var fprflag = flag.Bool("fpr", false, "start siegfried fpr server at "+config.Fpr())

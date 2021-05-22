@@ -11,9 +11,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/richardlehane/siegfried"
-	"github.com/richardlehane/siegfried/pkg/config"
-	"github.com/richardlehane/siegfried/pkg/pronom"
+	"github.com/ross-spencer/siegfried"
+	"github.com/ross-spencer/siegfried/pkg/config"
+	"github.com/ross-spencer/siegfried/pkg/pronom"
 )
 
 var (

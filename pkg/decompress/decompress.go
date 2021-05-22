@@ -29,9 +29,9 @@ import (
 	"github.com/richardlehane/characterize"
 	"github.com/richardlehane/webarchive"
 
-	"github.com/richardlehane/siegfried/internal/siegreader"
-	"github.com/richardlehane/siegfried/pkg/config"
-	"github.com/richardlehane/siegfried/pkg/core"
+	"github.com/ross-spencer/siegfried/internal/siegreader"
+	"github.com/ross-spencer/siegfried/pkg/config"
+	"github.com/ross-spencer/siegfried/pkg/core"
 )
 
 // package flag for changing functionality of Arcpath func if droid output flag is used
@@ -318,7 +318,7 @@ func dirs(path, name string, written map[string]bool) []string {
 	return nil
 }
 
-// per https://github.com/richardlehane/siegfried/issues/81
+// per https://github.com/ross-spencer/siegfried/issues/81
 // construct paths for compressed objects acc. to KDE hash notation
 func Arcpath(base, path string) string {
 	if droidOutput {

@@ -5,10 +5,10 @@ import (
 	"io"
 	"testing"
 
-	"github.com/richardlehane/siegfried/internal/bytematcher/frames/tests"
-	"github.com/richardlehane/siegfried/internal/persist"
-	"github.com/richardlehane/siegfried/internal/siegreader"
-	"github.com/richardlehane/siegfried/pkg/core"
+	"github.com/ross-spencer/siegfried/internal/bytematcher/frames/tests"
+	"github.com/ross-spencer/siegfried/internal/persist"
+	"github.com/ross-spencer/siegfried/internal/siegreader"
+	"github.com/ross-spencer/siegfried/pkg/core"
 )
 
 var TestSample1 = []byte("test12345678910YNESSjunktestyjunktestytest12345678910111223") // should match sigs 0, 1 and 2

@@ -29,10 +29,10 @@ import (
 	"sync"
 	"time"
 
-	"github.com/richardlehane/siegfried/internal/bytematcher/frames"
-	"github.com/richardlehane/siegfried/internal/identifier"
-	"github.com/richardlehane/siegfried/pkg/config"
-	"github.com/richardlehane/siegfried/pkg/pronom/internal/mappings"
+	"github.com/ross-spencer/siegfried/internal/bytematcher/frames"
+	"github.com/ross-spencer/siegfried/internal/identifier"
+	"github.com/ross-spencer/siegfried/pkg/config"
+	"github.com/ross-spencer/siegfried/pkg/pronom/internal/mappings"
 )
 
 type pronom struct {
@@ -413,7 +413,7 @@ func getHttp(url string) ([]byte, error) {
 		return nil, err
 	}
 	_, timeout, _, transport := config.HarvestOptions()
-	req.Header.Add("User-Agent", "siegfried/roybot (+https://github.com/richardlehane/siegfried)")
+	req.Header.Add("User-Agent", "siegfried/roybot (+https://github.com/ross-spencer/siegfried)")
 	timer := time.AfterFunc(timeout, func() {
 		transport.CancelRequest(req)
 	})

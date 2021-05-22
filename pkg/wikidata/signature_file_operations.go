@@ -26,13 +26,13 @@ import (
 	"strings"
 	"time"
 
-	"github.com/richardlehane/siegfried/pkg/config"
-	"github.com/richardlehane/siegfried/pkg/core"
+	"github.com/ross-spencer/siegfried/pkg/config"
+	"github.com/ross-spencer/siegfried/pkg/core"
 
-	"github.com/richardlehane/siegfried/internal/identifier"
-	"github.com/richardlehane/siegfried/internal/persist"
+	"github.com/ross-spencer/siegfried/internal/identifier"
+	"github.com/ross-spencer/siegfried/internal/persist"
 
-	"github.com/richardlehane/siegfried/pkg/wikidata/internal/mappings"
+	"github.com/ross-spencer/siegfried/pkg/wikidata/internal/mappings"
 )
 
 // Alias for the FormatInfo interface in Parseable to make it easier to

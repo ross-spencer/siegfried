@@ -16,9 +16,9 @@
 package tests
 
 import (
-	. "github.com/richardlehane/siegfried/internal/bytematcher/frames"
-	"github.com/richardlehane/siegfried/internal/bytematcher/patterns"
-	. "github.com/richardlehane/siegfried/internal/bytematcher/patterns/tests"
+	. "github.com/ross-spencer/siegfried/internal/bytematcher/frames"
+	"github.com/ross-spencer/siegfried/internal/bytematcher/patterns"
+	. "github.com/ross-spencer/siegfried/internal/bytematcher/patterns/tests"
 )
 
 // TestFrames are exported so they can be used by the other bytematcher packages.

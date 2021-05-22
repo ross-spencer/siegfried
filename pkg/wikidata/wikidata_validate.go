@@ -25,7 +25,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/richardlehane/siegfried/pkg/wikidata/internal/converter"
+	"github.com/ross-spencer/siegfried/pkg/wikidata/internal/converter"
 )
 
 // Create a map to store linting results per Wikidata URI.

@@ -23,7 +23,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/richardlehane/siegfried/internal/checksum"
+	"github.com/ross-spencer/siegfried/internal/checksum"
 )
 
 const droidTime = "2006-01-02T15:04:05"

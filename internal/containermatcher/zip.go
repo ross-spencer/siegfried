@@ -18,7 +18,7 @@ import (
 	"archive/zip"
 	"io"
 
-	"github.com/richardlehane/siegfried/internal/siegreader"
+	"github.com/ross-spencer/siegfried/internal/siegreader"
 )
 
 type zipReader struct {

@@ -19,8 +19,8 @@ package frames
 import (
 	"strconv"
 
-	"github.com/richardlehane/siegfried/internal/bytematcher/patterns"
-	"github.com/richardlehane/siegfried/internal/persist"
+	"github.com/ross-spencer/siegfried/internal/bytematcher/patterns"
+	"github.com/ross-spencer/siegfried/internal/persist"
 )
 
 // Frame encapsulates a pattern with offset information, mediating between the pattern and the bytestream.
