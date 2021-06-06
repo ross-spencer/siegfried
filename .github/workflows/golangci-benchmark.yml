@@ -1,0 +1,66 @@
+# golangci-benchmark action
+#
+# Downloads provisioner and runs it using Siegfried's configurations
+# based on whether the develop or main branches have been pushed to.
+#
+# Secrets are configured under Github->Settings->Environment->Secrets.
+#
+# Four secrets are needed for:
+#
+#   * PACKET_AUTH_TOKEN: ...
+#   * RUNNER_AUTH: ...
+#   * BB_ACCOUNT: ...
+#   * BB_KEY: ...
+#
+# They will be read by richard-lehane/provisioner to complete the
+# rest of this work.
+#
+# The environment for this work will be called "benchmark".
+#
+name: golangci-benchmark
+on:
+  push:
+    branches:
+      - master
+      - main
+      - develop
+jobs:
+  benchmark_job:
+    name: Benchmark Siegfried
+    environment: benchmark
+    runs-on: ubuntu-latest
+    env:
+      PACKET_AUTH_TOKEN: ${{ secrets.PACKET_AUTH_TOKEN }}
+      RUNNER_AUTH: ${{ secrets.RUNNER_AUTH }}
+      BB_ACCOUNT: ${{ secrets.BB_ACCOUNT }}
+      BB_KEY: ${{ secrets.BB_KEY }}
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set RAND
+        run: |
+          echo "random_number=$RANDOM" >> $GITHUB_ENV
+      - name: Show ref
+        run: echo "Git branch ref:" ${{github.ref}}
+      - name: Clone
+        run: git clone https://github.com/ross-spencer/knock-knock.git $HOME/provisioner
+        shell: bash
+      - name: Install provisioner
+        run: cd $HOME/provisioner && go install
+        shell: bash
+      - name: Move back $HOME
+        run: cd $HOME
+        shell: bash
+      - name: Remove this (demonstrate paths exist)
+        run: stat $HOME/provisioner/scripts/develop.yaml && stat $HOME/provisioner/scripts/bench.yaml
+        shell: bash
+      - name: echo
+        run: echo "$WHO" && echo "${{ secrets.SUPER_SECRET }}" && echo "$ENV_SECRET_ONE" && echo "${{ secrets.ENV_SECRET_ONE }}"
+        shell: bash
+      - if: github.ref == 'refs/heads/develop'
+        name: Benchmark development branch
+        shell: bash
+        run: $HOME/go/bin/knock-knock -life=2h -host=develop-${{ env.random_number }}.itforarchivists.com -env=PACKET_AUTH_TOKEN,RUNNER_AUTH,BB_ACCOUNT,BB_KEY $HOME/provisioner/scripts/develop.yaml
+      - if: github.ref == 'refs/heads/main'
+        name: Benchmark main branch
+        run: $HOME/go/bin/knock-knock -life=12h -max=-1 -host=bench-${{ env.random_number }}.itforarchivists.com -env=PACKET_AUTH_TOKEN,RUNNER_AUTH,BB_ACCOUNT,BB_KEY $HOME/provisioner/scripts/bench.yaml
+        shell: bash
