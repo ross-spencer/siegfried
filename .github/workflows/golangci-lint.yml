@@ -1,0 +1,26 @@
+# golangci-lint action
+#
+# Ensures that linting has been performed correctly across the Siegfried
+# package and reports on errors.
+#
+# The linting recipe will currently exit with zero (no-error) whether
+# or not there are linting issues. This helps with the refactor and
+# maintenance of older code-bases where there are issues outstanding
+# across the code-base. When there are no linting errors the
+# error-return should be switched back on.
+name: golangci-lint
+on:
+  push:
+  pull_request:
+    types: [edited, opened, reopened, ready_for_review]
+jobs:
+  golangci:
+    name: lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: golangci-lint
+        uses: golangci/golangci-lint-action@v2
+        with:
+          version: v1.29
+          args: --issues-exit-code=0

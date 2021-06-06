@@ -1,0 +1,164 @@
+# goreleaser.yml
+#
+# with goreleaser installed, to test locally:
+#
+#   goreleaser --skip-publish --rm-dist (optional --debug)
+#
+# With the Siegfried Github action .golangcli-goreleaser.yml the file
+# will build various different versions of sf/roy binary and then
+# release those as individual archives that can be downloaded.
+#
+# Depending on how the goreleaser-action is configured when a release is
+# made it will still require manual publishing in Github, i.e. needs to
+# be marked as ready for production.
+#
+# More information on goreleaser-action:
+#
+#   * https://github.com/goreleaser/goreleaser-action
+#
+before:
+  hooks:
+    - go mod tidy
+
+builds:
+  - main: ./cmd/sf/
+    id: "sf"
+    binary: sf
+    goos:
+      - linux
+      - windows
+      - darwin
+      - freebsd
+    # Only build 32-bit binaries for Windows.
+    ignore:
+      - goos: linux
+        goarch: 386
+      - goos: linux
+        goarch: arm64
+      - goos: darwin
+        goarch: 386
+      - goos: darwin
+        goarch: arm64
+      - goos: freebsd
+        goarch: 386
+      - goos: freebsd
+        goarch: arm64
+    # Linker flags will currently be ignored in sf/roy binaries as they're not
+    # configured to pick them up. This value simply overrides the defaults
+    # which currently error.
+    #
+    # Default is `-s -w -X main.version={{.Version}} -X main.commit={{.Commit}}
+    #               -X main.date={{.Date}} -X main.builtBy=goreleaser`.
+    #
+    # The value cannot be set to null. Setting the value to something that
+    # doesn't exist is likely the safest option for future contributions to
+    # the code-base.
+    #
+    ldflags:
+      - -s -w -X main.NonExistentKey=NullValue
+
+  - main: ./cmd/roy/
+    id: "roy"
+    binary: roy
+    goos:
+      - linux
+      - windows
+      - darwin
+      - freebsd
+    # Only build 32-bit binaries for Windows.
+    ignore:
+      - goos: linux
+        goarch: 386
+      - goos: linux
+        goarch: arm64
+      - goos: darwin
+        goarch: 386
+      - goos: darwin
+        goarch: arm64
+      - goos: freebsd
+        goarch: 386
+      - goos: freebsd
+        goarch: arm64
+    # Linker flags will currently be ignored in sf/roy binaries as they're not
+    # configured to pick them up. This value simply overrides the defaults
+    # which currently error.
+    #
+    # Default is `-s -w -X main.version={{.Version}} -X main.commit={{.Commit}}
+    #               -X main.date={{.Date}} -X main.builtBy=goreleaser`.
+    #
+    # The value cannot be set to null. Setting the value to something that
+    # doesn't exist is likely the safest option for future contributions to
+    # the code-base.
+    #
+    ldflags:
+      - -s -w -X main.NonExistentKey=NullValue
+
+archives:
+  -
+    id: 'default'
+    format: tar.gz
+    format_overrides:
+      - goos: windows
+        format: zip
+    replacements:
+      darwin: "macOS"
+      linux: "linux"
+      windows: "win"
+      freebsd: "freeBSD"
+      386: "32-bit"
+      amd64: "64-bit"
+
+checksum:
+  name_template: 'checksums.txt'
+snapshot:
+  name_template: "{{ .Tag }}"
+changelog:
+  sort: asc
+  filters:
+    exclude:
+      - '^docs:'
+      - '^test:'
+
+release:
+  # Repo in which the release will be created.
+  # Default is extracted from the origin remote URL or empty if its private hosted.
+  # Note: it can only be one: either github, gitlab or gitea
+  github:
+    owner: ross-spencer
+    name: siegfried
+
+  # If set to true, will not auto-publish the release.
+  # Default is false.
+  draft: true
+
+  # If set, will create a release discussion in the category specified.
+  # Default is empty.
+  #discussion_category_name: General
+
+  # If set to auto, will mark the release as not ready for production
+  # in case there is an indicator for this in the tag e.g. v1.0.0-rc1
+  # If set to true, will mark the release as not ready for production.
+  # Default is false.
+  prerelease: true
+
+  # You can change the name of the release.
+  # Default is `{{.Tag}}`
+  # name_template: "{{.ProjectName}}-v{{.Version}} {{.Env.USER}}"
+  name_template: "Version {{.Tag}}"
+
+  # You can disable this pipe in order to not upload any artifacts.
+  # Defaults to false.
+  #disable: true
+
+  # Text for the Github release (footer: can also be used with goreleaser).
+  header: |
+    See [CHANGELOG.md](https://github.com/richardlehane/siegfried/blob/master/CHANGELOG.md)
+
+  # You can add extra pre-existing files to the release.
+  # The filename on the release will be the last part of the path (base). If
+  # another file with the same name exists, the latest one found will be used.
+  # Defaults to empty.
+  #extra_files:
+  #  - glob: ./path/to/file.txt
+  #  - glob: ./glob/**/to/**/file/**/*
+  #  - glob: ./glob/foo/to/bar/file/foobar/override_from_previous
