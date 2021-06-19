@@ -53,9 +53,6 @@ jobs:
       - name: Remove this (demonstrate paths exist)
         run: stat $HOME/provisioner/scripts/develop.yaml && stat $HOME/provisioner/scripts/bench.yaml
         shell: bash
-      - name: echo
-        run: echo "$WHO" && echo "${{ secrets.SUPER_SECRET }}" && echo "$ENV_SECRET_ONE" && echo "${{ secrets.ENV_SECRET_ONE }}"
-        shell: bash
       - if: github.ref == 'refs/heads/develop'
         name: Benchmark development branch
         shell: bash
