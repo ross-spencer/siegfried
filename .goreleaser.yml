@@ -162,5 +162,4 @@ release:
   #  - glob: ./path/to/file.txt
   #  - glob: ./glob/**/to/**/file/**/*
   #  - glob: ./glob/foo/to/bar/file/foobar/override_from_previous
-    - glob: ./cmd/roy/data/default.sig
-    - glob: ./cmd/roy/data/**/*
+    - glob: data-*.zip

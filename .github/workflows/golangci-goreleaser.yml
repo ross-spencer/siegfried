@@ -21,10 +21,15 @@ jobs:
   goreleaser:
     runs-on: ubuntu-latest
     steps:
+      - name: Get tag name
+        run: echo "tag_name=${GITHUB_REF/refs\/tags\//}" >> $GITHUB_ENV
       - name: Checkout
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
+      - name: Zip data directory
+        run: cd cmd/roy/data ; zip -r ../../../data-${{ env.tag_name }}.zip *
+        shell: bash
       - name: Set up Go
         uses: actions/setup-go@v2
         with:
