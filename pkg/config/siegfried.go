@@ -61,7 +61,7 @@ var siegfried = struct {
 	updateTransport: &http.Transport{Proxy: http.ProxyFromEnvironment},
 	fpr:             "/tmp/siegfried",
 	checkpoint:      524288, // point at which to report slow signatures (must be power of two)
-	userAgent:       "siegfried/siegbot (+https://github.com/richardlehane/siegfried)",
+	userAgent:       "siegfried/siegbot (+https://github.com/ross-spencer/siegfried)",
 }
 
 // GETTERS

@@ -20,7 +20,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/richardlehane/siegfried/pkg/config"
+	"github.com/ross-spencer/siegfried/pkg/config"
 )
 
 func TestLOC(t *testing.T) {

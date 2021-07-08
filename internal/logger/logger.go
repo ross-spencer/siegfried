@@ -23,10 +23,10 @@ import (
 	"strings"
 	"time"
 
-	"github.com/richardlehane/siegfried/internal/chart"
-	"github.com/richardlehane/siegfried/pkg/config"
-	"github.com/richardlehane/siegfried/pkg/core"
-	"github.com/richardlehane/siegfried/pkg/sets"
+	"github.com/ross-spencer/siegfried/internal/chart"
+	"github.com/ross-spencer/siegfried/pkg/config"
+	"github.com/ross-spencer/siegfried/pkg/core"
+	"github.com/ross-spencer/siegfried/pkg/sets"
 )
 
 const (

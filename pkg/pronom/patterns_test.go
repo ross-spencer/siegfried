@@ -3,10 +3,13 @@ package pronom
 import (
 	"testing"
 
-	"github.com/richardlehane/siegfried/internal/bytematcher/patterns"
+	"github.com/ross-spencer/siegfried/internal/bytematcher/patterns"
 )
 
 func TestRange(t *testing.T) {
+	if testing.Short() {
+		t.Skip("Test is useful for reference and can/will fail: skipping in go test -short mode.")
+	}
 	rng := Range{[]byte{1}, []byte{3}}
 	rng2 := Range{[]byte{1}, []byte{3}}
 	rng3 := Range{[]byte{11, 250}, []byte{12, 1}}
@@ -37,6 +40,9 @@ func TestRange(t *testing.T) {
 }
 
 func TestNotRange(t *testing.T) {
+	if testing.Short() {
+		t.Skip("Test is useful for reference and can/will fail: skipping in go test -short mode.")
+	}
 	rng := patterns.Not{Range{[]byte{1}, []byte{3}}}
 	rng2 := patterns.Not{Range{[]byte{1}, []byte{3}}}
 	if !rng.Equals(rng2) {

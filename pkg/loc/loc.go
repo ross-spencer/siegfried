@@ -23,12 +23,12 @@ import (
 	"strings"
 	"time"
 
-	"github.com/richardlehane/siegfried/internal/bytematcher/frames"
-	"github.com/richardlehane/siegfried/internal/identifier"
-	"github.com/richardlehane/siegfried/internal/priority"
-	"github.com/richardlehane/siegfried/pkg/config"
-	"github.com/richardlehane/siegfried/pkg/loc/internal/mappings"
-	"github.com/richardlehane/siegfried/pkg/pronom"
+	"github.com/ross-spencer/siegfried/internal/bytematcher/frames"
+	"github.com/ross-spencer/siegfried/internal/identifier"
+	"github.com/ross-spencer/siegfried/internal/priority"
+	"github.com/ross-spencer/siegfried/pkg/config"
+	"github.com/ross-spencer/siegfried/pkg/loc/internal/mappings"
+	"github.com/ross-spencer/siegfried/pkg/pronom"
 )
 
 type fdds struct {

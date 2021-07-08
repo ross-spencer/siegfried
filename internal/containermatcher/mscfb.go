@@ -18,7 +18,7 @@ import (
 	"strings"
 
 	"github.com/richardlehane/mscfb"
-	"github.com/richardlehane/siegfried/internal/siegreader"
+	"github.com/ross-spencer/siegfried/internal/siegreader"
 )
 
 type mscfbReader struct {

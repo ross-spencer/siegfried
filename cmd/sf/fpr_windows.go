@@ -14,7 +14,7 @@
 
 package main
 
-import "github.com/richardlehane/siegfried"
+import "github.com/ross-spencer/siegfried"
 
 var (
 	boolval       = false

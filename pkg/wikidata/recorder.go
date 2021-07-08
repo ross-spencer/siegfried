@@ -24,8 +24,8 @@ import (
 	"fmt"
 	"sort"
 
-	"github.com/richardlehane/siegfried/pkg/config"
-	"github.com/richardlehane/siegfried/pkg/core"
+	"github.com/ross-spencer/siegfried/pkg/config"
+	"github.com/ross-spencer/siegfried/pkg/core"
 )
 
 const (

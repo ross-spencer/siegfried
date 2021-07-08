@@ -14,7 +14,7 @@
 
 package frames
 
-import "github.com/richardlehane/siegfried/internal/bytematcher/patterns"
+import "github.com/ross-spencer/siegfried/internal/bytematcher/patterns"
 
 // Sequencer turns sequential frames into a set of plain byte sequences. The set represents possible choices.
 type Sequencer func(Frame) [][]byte

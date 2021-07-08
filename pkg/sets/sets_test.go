@@ -6,7 +6,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/richardlehane/siegfried/pkg/config"
+	"github.com/ross-spencer/siegfried/pkg/config"
 )
 
 var testhome = flag.String("testhome", "../../cmd/roy/data", "override the default home directory")

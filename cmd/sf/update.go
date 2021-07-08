@@ -28,8 +28,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/richardlehane/siegfried/internal/persist"
-	"github.com/richardlehane/siegfried/pkg/config"
+	"github.com/ross-spencer/siegfried/internal/persist"
+	"github.com/ross-spencer/siegfried/pkg/config"
 )
 
 type Update struct {

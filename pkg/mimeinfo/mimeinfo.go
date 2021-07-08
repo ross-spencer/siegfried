@@ -25,11 +25,11 @@ import (
 	"strings"
 	"unicode/utf16"
 
-	"github.com/richardlehane/siegfried/internal/bytematcher/frames"
-	"github.com/richardlehane/siegfried/internal/bytematcher/patterns"
-	"github.com/richardlehane/siegfried/internal/identifier"
-	"github.com/richardlehane/siegfried/pkg/config"
-	"github.com/richardlehane/siegfried/pkg/mimeinfo/internal/mappings"
+	"github.com/ross-spencer/siegfried/internal/bytematcher/frames"
+	"github.com/ross-spencer/siegfried/internal/bytematcher/patterns"
+	"github.com/ross-spencer/siegfried/internal/identifier"
+	"github.com/ross-spencer/siegfried/pkg/config"
+	"github.com/ross-spencer/siegfried/pkg/mimeinfo/internal/mappings"
 )
 
 func versions() []string {

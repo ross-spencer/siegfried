@@ -3,8 +3,8 @@ package patterns_test
 import (
 	"testing"
 
-	. "github.com/richardlehane/siegfried/internal/bytematcher/patterns"
-	. "github.com/richardlehane/siegfried/internal/bytematcher/patterns/tests"
+	. "github.com/ross-spencer/siegfried/internal/bytematcher/patterns"
+	. "github.com/ross-spencer/siegfried/internal/bytematcher/patterns/tests"
 )
 
 func TestBMH(t *testing.T) {

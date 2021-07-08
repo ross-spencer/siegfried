@@ -4,7 +4,7 @@ import (
 	"path/filepath"
 	"testing"
 
-	"github.com/richardlehane/siegfried/pkg/config"
+	"github.com/ross-spencer/siegfried/pkg/config"
 )
 
 var p *pronom

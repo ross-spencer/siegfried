@@ -19,7 +19,7 @@
 package wikidata
 
 import (
-	"github.com/richardlehane/siegfried/pkg/wikidata/internal/mappings"
+	"github.com/ross-spencer/siegfried/pkg/wikidata/internal/mappings"
 
 	"github.com/ross-spencer/spargo/pkg/spargo"
 )

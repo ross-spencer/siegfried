@@ -4,13 +4,13 @@ import (
 	"flag"
 	"testing"
 
-	"github.com/richardlehane/siegfried"
-	"github.com/richardlehane/siegfried/pkg/config"
-	"github.com/richardlehane/siegfried/pkg/loc"
-	"github.com/richardlehane/siegfried/pkg/mimeinfo"
-	"github.com/richardlehane/siegfried/pkg/pronom"
-	"github.com/richardlehane/siegfried/pkg/sets"
-	wd "github.com/richardlehane/siegfried/pkg/wikidata"
+	"github.com/ross-spencer/siegfried"
+	"github.com/ross-spencer/siegfried/pkg/config"
+	"github.com/ross-spencer/siegfried/pkg/loc"
+	"github.com/ross-spencer/siegfried/pkg/mimeinfo"
+	"github.com/ross-spencer/siegfried/pkg/pronom"
+	"github.com/ross-spencer/siegfried/pkg/sets"
+	wd "github.com/ross-spencer/siegfried/pkg/wikidata"
 )
 
 var testhome = flag.String("home", "data", "override the default home directory")

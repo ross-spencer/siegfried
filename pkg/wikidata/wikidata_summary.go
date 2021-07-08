@@ -20,7 +20,7 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"github.com/richardlehane/siegfried/pkg/config"
+	"github.com/ross-spencer/siegfried/pkg/config"
 )
 
 // Summary of the identifier once processed.

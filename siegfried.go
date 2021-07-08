@@ -43,23 +43,23 @@ import (
 	"strings"
 	"time"
 
-	"github.com/richardlehane/siegfried/internal/bytematcher"
-	"github.com/richardlehane/siegfried/internal/containermatcher"
-	"github.com/richardlehane/siegfried/internal/mimematcher"
-	"github.com/richardlehane/siegfried/internal/namematcher"
-	"github.com/richardlehane/siegfried/internal/persist"
-	"github.com/richardlehane/siegfried/internal/riffmatcher"
-	"github.com/richardlehane/siegfried/internal/siegreader"
-	"github.com/richardlehane/siegfried/internal/textmatcher"
-	"github.com/richardlehane/siegfried/internal/xmlmatcher"
-	"github.com/richardlehane/siegfried/pkg/config"
-	"github.com/richardlehane/siegfried/pkg/core"
-	"github.com/richardlehane/siegfried/pkg/loc"
-	"github.com/richardlehane/siegfried/pkg/mimeinfo"
-	"github.com/richardlehane/siegfried/pkg/pronom"
+	"github.com/ross-spencer/siegfried/internal/bytematcher"
+	"github.com/ross-spencer/siegfried/internal/containermatcher"
+	"github.com/ross-spencer/siegfried/internal/mimematcher"
+	"github.com/ross-spencer/siegfried/internal/namematcher"
+	"github.com/ross-spencer/siegfried/internal/persist"
+	"github.com/ross-spencer/siegfried/internal/riffmatcher"
+	"github.com/ross-spencer/siegfried/internal/siegreader"
+	"github.com/ross-spencer/siegfried/internal/textmatcher"
+	"github.com/ross-spencer/siegfried/internal/xmlmatcher"
+	"github.com/ross-spencer/siegfried/pkg/config"
+	"github.com/ross-spencer/siegfried/pkg/core"
+	"github.com/ross-spencer/siegfried/pkg/loc"
+	"github.com/ross-spencer/siegfried/pkg/mimeinfo"
+	"github.com/ross-spencer/siegfried/pkg/pronom"
 
 	// Load Wikidata into a Siegfried...
-	"github.com/richardlehane/siegfried/pkg/wikidata"
+	"github.com/ross-spencer/siegfried/pkg/wikidata"
 )
 
 var ( // for side effect - register their patterns/ signature loaders

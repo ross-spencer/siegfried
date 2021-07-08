@@ -24,13 +24,13 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/richardlehane/siegfried"
-	"github.com/richardlehane/siegfried/pkg/config"
-	"github.com/richardlehane/siegfried/pkg/core"
-	"github.com/richardlehane/siegfried/pkg/loc"
-	"github.com/richardlehane/siegfried/pkg/mimeinfo"
-	"github.com/richardlehane/siegfried/pkg/pronom"
-	"github.com/richardlehane/siegfried/pkg/sets"
+	"github.com/ross-spencer/siegfried"
+	"github.com/ross-spencer/siegfried/pkg/config"
+	"github.com/ross-spencer/siegfried/pkg/core"
+	"github.com/ross-spencer/siegfried/pkg/loc"
+	"github.com/ross-spencer/siegfried/pkg/mimeinfo"
+	"github.com/ross-spencer/siegfried/pkg/pronom"
+	"github.com/ross-spencer/siegfried/pkg/sets"
 )
 
 var genhome = flag.String("home", "data", "override the default home directory")

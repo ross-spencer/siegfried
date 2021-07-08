@@ -1,0 +1,43 @@
+# golangci-goreleaser action
+#
+# Runs the goreleaser functions defined in .goreleaser.yml. The action
+# will run when a new tag is pushed.
+#
+# Tokens are supplied for this file automatically by Github when the
+# action is run.
+#
+# More information about how the go release is configured is in the
+# .goreleaser.yml file. The file defines mechanisms such as how archive
+# file names are configured and the contents of those files.
+#
+name: golangci-goreleaser
+on:
+  push:
+    tags:
+      - '*'
+permissions:
+  contents: write
+jobs:
+  goreleaser:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get tag name
+        run: echo "tag_name=${GITHUB_REF/refs\/tags\//}" >> $GITHUB_ENV
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Zip the data directory for release
+        run: cd cmd/roy/data ; zip -r ../../../data-${{ env.tag_name }}.zip *
+        shell: bash
+      - name: Set up Go
+        uses: actions/setup-go@v2
+        with:
+          go-version: 1.16
+      - name: Run GoReleaser
+        uses: goreleaser/goreleaser-action@v2
+        with:
+          version: latest
+          args: release --rm-dist
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

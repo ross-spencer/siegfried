@@ -23,9 +23,9 @@ package wikidata
 import (
 	"log"
 
-	"github.com/richardlehane/siegfried/internal/identifier"
-	"github.com/richardlehane/siegfried/pkg/config"
-	"github.com/richardlehane/siegfried/pkg/pronom"
+	"github.com/ross-spencer/siegfried/internal/identifier"
+	"github.com/ross-spencer/siegfried/pkg/config"
+	"github.com/ross-spencer/siegfried/pkg/pronom"
 )
 
 // wikidataDefinitions contains the file format information retrieved

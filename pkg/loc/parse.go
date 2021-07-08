@@ -19,8 +19,8 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/richardlehane/siegfried/internal/bytematcher/frames"
-	"github.com/richardlehane/siegfried/internal/bytematcher/patterns"
+	"github.com/ross-spencer/siegfried/internal/bytematcher/frames"
+	"github.com/ross-spencer/siegfried/internal/bytematcher/patterns"
 )
 
 func magics(m []string) ([]frames.Signature, error) {

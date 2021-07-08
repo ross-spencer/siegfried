@@ -14,7 +14,7 @@
 
 package containermatcher
 
-import "github.com/richardlehane/siegfried/internal/siegreader"
+import "github.com/ross-spencer/siegfried/internal/siegreader"
 
 type Reader interface {
 	Next() error  // when finished, should return io.EOF

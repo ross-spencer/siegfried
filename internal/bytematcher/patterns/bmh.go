@@ -17,7 +17,7 @@ package patterns
 import (
 	"bytes"
 
-	"github.com/richardlehane/siegfried/internal/persist"
+	"github.com/ross-spencer/siegfried/internal/persist"
 )
 
 // BMH turns patterns into BMH sequences if possible.

@@ -3,9 +3,9 @@ package bytematcher
 import (
 	"testing"
 
-	"github.com/richardlehane/siegfried/internal/bytematcher/frames"
-	"github.com/richardlehane/siegfried/internal/bytematcher/frames/tests"
-	"github.com/richardlehane/siegfried/internal/persist"
+	"github.com/ross-spencer/siegfried/internal/bytematcher/frames"
+	"github.com/ross-spencer/siegfried/internal/bytematcher/frames/tests"
+	"github.com/ross-spencer/siegfried/internal/persist"
 )
 
 var TesttestNodes = []*testNode{

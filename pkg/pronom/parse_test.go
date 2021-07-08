@@ -4,9 +4,9 @@ import (
 	"bytes"
 	"testing"
 
-	"github.com/richardlehane/siegfried/internal/bytematcher/patterns"
-	"github.com/richardlehane/siegfried/internal/identifier"
-	"github.com/richardlehane/siegfried/pkg/pronom/internal/mappings"
+	"github.com/ross-spencer/siegfried/internal/bytematcher/patterns"
+	"github.com/ross-spencer/siegfried/internal/identifier"
+	"github.com/ross-spencer/siegfried/pkg/pronom/internal/mappings"
 )
 
 var bsStub1 = mappings.ByteSequence{

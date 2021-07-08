@@ -18,8 +18,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/richardlehane/siegfried/internal/siegreader"
-	"github.com/richardlehane/siegfried/pkg/core"
+	"github.com/ross-spencer/siegfried/internal/siegreader"
+	"github.com/ross-spencer/siegfried/pkg/core"
 )
 
 var (

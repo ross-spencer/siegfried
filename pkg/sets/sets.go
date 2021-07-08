@@ -26,7 +26,7 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/richardlehane/siegfried/pkg/config"
+	"github.com/ross-spencer/siegfried/pkg/config"
 )
 
 var (

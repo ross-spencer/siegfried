@@ -4,11 +4,14 @@ import (
 	"path/filepath"
 	"testing"
 
-	"github.com/richardlehane/siegfried/pkg/config"
+	"github.com/ross-spencer/siegfried/pkg/config"
 )
 
-// DROID parsing is tested by comparing it against Report parsing
+// DROID parsing is tested by comparing it against Report parsing.
 func TestParseDroid(t *testing.T) {
+	if testing.Short() {
+		t.Skip("Test is useful for reference and can/will fail - skipping in go test -short mode.")
+	}
 	config.SetHome(filepath.Join("..", "..", "cmd", "roy", "data"))
 	d, err := newDroid(config.Droid())
 	if err != nil {

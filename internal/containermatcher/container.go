@@ -19,12 +19,12 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/richardlehane/siegfried/internal/bytematcher"
-	"github.com/richardlehane/siegfried/internal/bytematcher/frames"
-	"github.com/richardlehane/siegfried/internal/persist"
-	"github.com/richardlehane/siegfried/internal/priority"
-	"github.com/richardlehane/siegfried/internal/siegreader"
-	"github.com/richardlehane/siegfried/pkg/core"
+	"github.com/ross-spencer/siegfried/internal/bytematcher"
+	"github.com/ross-spencer/siegfried/internal/bytematcher/frames"
+	"github.com/ross-spencer/siegfried/internal/persist"
+	"github.com/ross-spencer/siegfried/internal/priority"
+	"github.com/ross-spencer/siegfried/internal/siegreader"
+	"github.com/ross-spencer/siegfried/pkg/core"
 )
 
 type containerType int

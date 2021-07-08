@@ -19,9 +19,9 @@ import (
 	"io"
 
 	wac "github.com/richardlehane/match/fwac"
-	"github.com/richardlehane/siegfried/internal/bytematcher/frames"
-	"github.com/richardlehane/siegfried/internal/persist"
-	"github.com/richardlehane/siegfried/internal/siegreader"
+	"github.com/ross-spencer/siegfried/internal/bytematcher/frames"
+	"github.com/ross-spencer/siegfried/internal/persist"
+	"github.com/ross-spencer/siegfried/internal/siegreader"
 )
 
 // Sequence Sets and Frame Sets

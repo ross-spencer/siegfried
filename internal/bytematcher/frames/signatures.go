@@ -14,7 +14,7 @@
 
 package frames
 
-import "github.com/richardlehane/siegfried/internal/bytematcher/patterns"
+import "github.com/ross-spencer/siegfried/internal/bytematcher/patterns"
 
 // Signature is just a slice of frames.
 type Signature []Frame

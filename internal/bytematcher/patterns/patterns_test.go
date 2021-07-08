@@ -3,9 +3,9 @@ package patterns_test
 import (
 	"testing"
 
-	"github.com/richardlehane/siegfried/internal/persist"
+	"github.com/ross-spencer/siegfried/internal/persist"
 
-	. "github.com/richardlehane/siegfried/internal/bytematcher/patterns/tests"
+	. "github.com/ross-spencer/siegfried/internal/bytematcher/patterns/tests"
 )
 
 func TestSequence(t *testing.T) {
