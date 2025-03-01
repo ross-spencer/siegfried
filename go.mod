@@ -9,12 +9,12 @@ require (
 	github.com/richardlehane/webarchive v1.0.3
 	github.com/richardlehane/xmldetect v1.0.2
 	github.com/ross-spencer/wikiprov v1.0.0
-	golang.org/x/image v0.18.0
-	golang.org/x/sys v0.22.0
+	golang.org/x/image v0.24.0
+	golang.org/x/sys v0.30.0
 )
 
 require (
-	github.com/richardlehane/msoleps v1.0.3 // indirect
+	github.com/richardlehane/msoleps v1.0.4 // indirect
 	github.com/ross-spencer/spargo v0.4.1 // indirect
-	golang.org/x/text v0.16.0 // indirect
+	golang.org/x/text v0.22.0 // indirect
 )

@@ -97,7 +97,21 @@ Or, for the most recent updates, you can install from this fork:
     makepkg -si
 
 ## Changes
-### v1.11.2 (2025-0x-xx)
+### v1.11.2 (2025-03-01)
+### Added
+- Filter introduced to improve Wikidata queries and `-harvestWikidataSigLen` flag sets minimum length of Wikidata signatures. Implemented by [Ross Spencer and Andy Jackson](https://github.com/richardlehane/siegfried/pull/253) 
+- `-noprov` flag introduced for Wikidata signatures. Implemented by [Ross Spencer](https://github.com/richardlehane/siegfried/pull/270)
+- `version` command for `roy`. Implemented by [Ross Spencer](https://github.com/richardlehane/siegfried/pull/265)
+
+### Changed
+- Logged error messages have more context. Implemented by [Ross Spencer](https://github.com/richardlehane/siegfried/pull/256)
+- update PRONOM to v120
+- Wikidata definitions updated to 4.0.0. By [Ross Spencer](https://github.com/richardlehane/siegfried/pull/264)
+- update LOC to 2025-02-26
+- update TIKA to v3.1.0
+
+### Fixed
+- Explicitly declared variable offsets are parsed e.g. fmt/1840. Implemented by [Rijnder Wever](https://github.com/richardlehane/siegfried/pull/267)
 
 ### v1.11.1 (2024-06-28)
 ### Added
