@@ -14,7 +14,7 @@
 
 package main
 
-import "C"
+//import "C"
 
 import (
 	"os"

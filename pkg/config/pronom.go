@@ -64,24 +64,15 @@ var pronom = struct {
 
 // GETTERS
 
-var droidDefaultSet bool
-var droidDefault string // remember the droid default to avoid repeated calls to latest()
-
 // Droid returns the location of the DROID signature file.
 // If not set, infers the latest file.
 func Droid() string {
 	if pronom.droid == "" {
-		if droidDefaultSet {
-			return droidDefault
-		}
 		droid, err := latest("DROID_SignatureFile_V", ".xml")
 		if err != nil {
-			droidDefaultSet = true
 			return ""
 		}
-		droidDefault = filepath.Join(siegfried.home, droid)
-		droidDefaultSet = true
-		return droidDefault
+		return filepath.Join(siegfried.home, droid)
 	}
 	if filepath.Dir(pronom.droid) == "." {
 		return filepath.Join(siegfried.home, pronom.droid)
