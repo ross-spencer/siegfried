@@ -4,7 +4,6 @@ import (
 	"bytes"
 	"fmt"
 	"io"
-	"io/ioutil"
 	"math/rand"
 	"os"
 	"path/filepath"
@@ -155,8 +154,10 @@ func TestSmallFileRand(t *testing.T) {
 	b := setup(tf, t)
 	b.setsmallfile()
 	defer bufs.Put(b)
-	err = testBuffer(t, 10, tf, b)
-	if err := testBuffer(t, 1000, tf, b); err != nil {
+	if err = testBuffer(t, 10, tf, b); err != nil {
+		t.Fatal(err)
+	}
+	if err = testBuffer(t, 1000, tf, b); err != nil {
 		t.Fatal(err)
 	}
 }
@@ -209,7 +210,7 @@ func TestBigStreamRand(t *testing.T) {
 }
 
 func makeTmp(sz int64) (f *os.File, err error) {
-	tf, err := ioutil.TempFile("", "sftest")
+	tf, err := os.CreateTemp("", "sftest")
 	if err != nil {
 		return nil, err
 	}

@@ -1,8 +1,8 @@
 package siegreader
 
 import (
+	"fmt"
 	"io"
-	"io/ioutil"
 	"os"
 	"sync"
 )
@@ -69,13 +69,13 @@ func (s *stream) grow() error {
 		return nil
 	}
 	c := cap(s.buf) * 2
-	if c > streamSz {
-		if cap(s.buf) < streamSz {
-			c = streamSz
+	if c > StreamSz {
+		if cap(s.buf) < StreamSz {
+			c = StreamSz
 		} else { // if we've exceeded streamSz, use a temp file to copy remainder
 			var err error
-			s.tf, err = ioutil.TempFile("", "siegfried")
-			return err
+			s.tf, err = os.CreateTemp("", "siegfried")
+			return fmt.Errorf("failed creating a temporary file for a stream larger than %d bytes: %w\nUse siegfried.StreamSize(N) to change the default", StreamSz, err)
 		}
 	}
 	buf := make([]byte, c)
@@ -91,7 +91,9 @@ func (s *stream) fill() (int64, error) {
 	}
 	// if we've run out of room in buf, & there is no backing file, grow the buffer
 	if len(s.buf)-readSz < s.i && s.tf == nil {
-		s.grow()
+		if err := s.grow(); err != nil {
+			return s.sz, err
+		}
 	}
 	// now let's read
 	var err error

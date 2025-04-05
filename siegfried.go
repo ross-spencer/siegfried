@@ -595,3 +595,10 @@ func (s *Siegfried) Inspect(t core.MatcherType) string {
 	}
 	return "matcher not present in this signature"
 }
+
+// StreamSize sets the limit in bytes for copying streams to memory.
+// When streams exceed this size, they are copied to a temporary file.
+// The default value is 64MB.
+func StreamSize(sz int) {
+	siegreader.StreamSz = sz
+}

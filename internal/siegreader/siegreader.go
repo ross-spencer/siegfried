@@ -15,18 +15,19 @@
 // Package siegreader implements multiple independent Readers (and ReverseReaders) from a single Buffer.
 //
 // Example:
-//   buffers := siegreader.New()
-//   buffer, err := buffers.Get(io.Reader)
-//   if err != nil {
-//     log.Fatal(err)
-//   }
-//   rdr := siegreader.ReaderFrom(buffer)
-//	 second_rdr := siegreader.ReaderFrom(buffer)
-//   brdr := siegreader.LimitReaderFrom(buffer, -1)
-//   rrdr, err := siegreader.LimitReverseReaderFrom(buffer, 16000)
-//   i, err := rdr.Read(slc)
-//   i2, err := second_rdr.Read(slc2)
-//   i3, err := rrdr.ReadByte()
+//
+//	  buffers := siegreader.New()
+//	  buffer, err := buffers.Get(io.Reader)
+//	  if err != nil {
+//	    log.Fatal(err)
+//	  }
+//	  rdr := siegreader.ReaderFrom(buffer)
+//		 second_rdr := siegreader.ReaderFrom(buffer)
+//	  brdr := siegreader.LimitReaderFrom(buffer, -1)
+//	  rrdr, err := siegreader.LimitReverseReaderFrom(buffer, 16000)
+//	  i, err := rdr.Read(slc)
+//	  i2, err := second_rdr.Read(slc2)
+//	  i3, err := rrdr.ReadByte()
 package siegreader
 
 import (
@@ -48,8 +49,10 @@ const (
 	eofSz           = readSz * 2
 	wheelSz         = readSz * 16
 	smallFileSz     = readSz * 16
-	streamSz        = smallFileSz * 1024
 )
+
+// StreamSz defaults to 64MB. When streams exceed this size, they are copied to a temporary file.
+var StreamSz = smallFileSz * 1024
 
 type bufferSrc interface {
 	Slice(off int64, l int) ([]byte, error)
