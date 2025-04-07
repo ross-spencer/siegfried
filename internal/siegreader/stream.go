@@ -75,7 +75,10 @@ func (s *stream) grow() error {
 		} else { // if we've exceeded streamSz, use a temp file to copy remainder
 			var err error
 			s.tf, err = os.CreateTemp("", "siegfried")
-			return fmt.Errorf("failed creating a temporary file for a stream larger than %d bytes: %w\nUse siegfried.StreamSize(N) to change the default", StreamSz, err)
+			if err != nil {
+				return fmt.Errorf("failed creating a temporary file for a stream larger than %d bytes: %w\nUse siegfried.StreamSize(N) to change the default", StreamSz, err)
+			}
+			return nil
 		}
 	}
 	buf := make([]byte, c)
