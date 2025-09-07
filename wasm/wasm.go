@@ -228,8 +228,39 @@ func sfWrapper(sf *siegfried.Siegfried) js.Func {
 	})
 }
 
+func royWrapper() js.Func {
+	return js.FuncOf(func(this js.Value, args []js.Value) any {
+		promiseHandler := js.FuncOf(func(v js.Value, x []js.Value) interface{} {
+			resolve := x[0]
+			reject := x[1]
+			fmt.Println("vvv", v)
+			fmt.Println("xxx", x)
+			go func() {
+				out := &bytes.Buffer{}
+				//var w writer.Writer
+				//data := []byte{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16}
+				//out = append(*out, data...)
+				out.Write([]byte("Helloxx "))
+				var err error
+				//err = fmt.Errorf("ffffffffffffffff")
+				if err != nil {
+					reject.Invoke(err.Error())
+				} else {
+					resolve.Invoke(out.String())
+				}
+				fmt.Println("xxx works!")
+			}()
+			return nil
+		})
+		// Create and return the Promise object
+		promise := js.Global().Get("Promise")
+		return promise.New(promiseHandler)
+	})
+}
+
 func main() {
 	sf := static.New()
 	js.Global().Set("identify", sfWrapper(sf))
+	js.Global().Set("sigload", royWrapper())
 	<-make(chan bool)
 }
