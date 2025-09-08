@@ -217,22 +217,33 @@ func savereps() error {
 	return nil
 }
 
+// TODO: makegob for making a new signature... or extending...
 func makegob(s *siegfried.Siegfried, opts []config.Option) error {
 	var id core.Identifier
 	var err error
+	for k, v := range opts {
+		log.Printf("%d %+v", k, v)
+	}
+
+	log.Println("gob...")
 	if *mi != "" {
+		log.Println("mimeinfo build...")
 		id, err = mimeinfo.New(opts...)
 	} else if *locfdd || *fdd != "" {
+		log.Println("loc build...")
 		id, err = loc.New(opts...)
 	} else if *wikidata || *wikidataDebug {
+		log.Println("wiki build...")
 		id, err = wd.New(opts...)
 	} else {
+		log.Println("pro build...")
 		id, err = pronom.New(opts...)
 	}
 	if err != nil {
 		return err
 	}
 	if id != nil {
+		log.Println("id.....")
 		err = s.Add(id)
 		if err != nil {
 			return err
@@ -536,6 +547,8 @@ func main() {
 		version := config.Version()
 		fmt.Printf("roy %d.%d.%d\n", version[0], version[1], version[2])
 		return
+
+	// BUILD.... extend must happen here...
 	case "build":
 		err = build.Parse(os.Args[2:])
 		if err == nil {
@@ -545,6 +558,7 @@ func main() {
 			s := siegfried.New()
 			err = makegob(s, getOptions())
 		}
+
 	case "add":
 		err = build.Parse(os.Args[2:])
 		if err == nil {

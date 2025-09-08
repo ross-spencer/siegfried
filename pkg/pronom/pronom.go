@@ -96,6 +96,7 @@ func NewPronom() (identifier.Parseable, error) {
 
 // set identifiers joins signatures in the DROID signature file with any extra reports and adds that to the pronom object
 func (p *pronom) setParseables() error {
+	log.Println("parseables...")
 	d, err := newDroid(config.Droid())
 	if err != nil {
 		return fmt.Errorf("pronom: error loading Droid file; got %s\nYou must have a Droid file to build a signature", config.Home())
@@ -118,7 +119,8 @@ func (p *pronom) setParseables() error {
 		}
 		p.Parseable = r
 	}
-	// add extensions
+	// TODO: add extensions
+	log.Println("add extensions...")
 	for _, v := range config.Extend() {
 		e, err := newDroid(v)
 		if err != nil {
@@ -136,7 +138,10 @@ func (p *pronom) setParseables() error {
 	return nil
 }
 
+// TODO: extend... SEE IF WE CAN JUST LOAD THE EXTENDED SIGNATURE
+// FILE HERE... e.g. EXTEND EXCLUSIVE...
 func newDroid(path string) (*droid, error) {
+	log.Println("new droid... ", path)
 	d := &mappings.Droid{}
 	if err := openXML(path, d); err != nil {
 		return nil, fmt.Errorf("%s: %s", err.Error(), path)
@@ -358,6 +363,7 @@ func TypeSets(p1, p2, p3 string) error {
 
 // Extension set writes a sets file that links extensions to IDs.
 func ExtensionSet(path string) error {
+	log.Println("extset")
 	d, err := newDroid(config.Droid())
 	if err != nil {
 		return err
@@ -382,6 +388,7 @@ func ExtensionSet(path string) error {
 }
 
 func openXML(path string, els interface{}) error {
+	//log.Println("open xml... ", path)
 	buf, err := ioutil.ReadFile(path)
 	if err != nil {
 		return err
