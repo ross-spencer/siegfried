@@ -16,6 +16,7 @@ package pronom
 
 import (
 	"fmt"
+	"log"
 	"sort"
 	"strings"
 
@@ -41,11 +42,25 @@ type Identifier struct {
 
 // Save persists the PRONOM Identifier to disk
 func (i *Identifier) Save(ls *persist.LoadSaver) {
+
+	// TODO: part of saving the roy sig file... add details here for WASM.
+
+	log.Println("persist sig file...")
 	ls.SaveByte(core.Pronom)
+
+	x := ls.Bytes()
+	log.Println("core.pronom: ", len(x))
+
 	i.Base.Save(ls)
+
+	x = ls.Bytes()
+	log.Println("after save: ", len(x))
+
 	ls.SaveBool(i.hasClass)
+
 	multi := i.Multi() == config.DROID
 	ls.SaveSmallInt(len(i.infos))
+
 	for k, v := range i.infos {
 		ls.SaveString(k)
 		ls.SaveString(v.name)
@@ -105,11 +120,15 @@ func Load(ls *persist.LoadSaver) core.Identifier {
 
 // New creates a new PRONOM Identifier
 func New(opts ...config.Option) (core.Identifier, error) {
+	log.Println("in new...")
 	for _, v := range opts {
+		log.Println("executing opts...")
 		v()
 	}
+	log.Println("raw is called here...")
 	pronom, err := raw()
 	if err != nil {
+		log.Println("have an error: ", err)
 		return nil, err
 	}
 	var pmap priority.Map
@@ -125,6 +144,8 @@ func New(opts ...config.Option) (core.Identifier, error) {
 	if id.Multi() == config.DROID {
 		id.priorities = pmap
 	}
+	log.Println("returning from New")
+	fmt.Println("returning from new...")
 	return id, nil
 }
 

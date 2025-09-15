@@ -221,11 +221,14 @@ func savereps() error {
 func makegob(s *siegfried.Siegfried, opts []config.Option) error {
 	var id core.Identifier
 	var err error
+
+	log.Println("printing args...")
 	for k, v := range opts {
+		// we have two opts... which are...
 		log.Printf("%d %+v", k, v)
 	}
 
-	log.Println("gob...")
+	log.Println("makegob...")
 	if *mi != "" {
 		log.Println("mimeinfo build...")
 		id, err = mimeinfo.New(opts...)
@@ -236,7 +239,7 @@ func makegob(s *siegfried.Siegfried, opts []config.Option) error {
 		log.Println("wiki build...")
 		id, err = wd.New(opts...)
 	} else {
-		log.Println("pro build...")
+		log.Println("pronom build...")
 		id, err = pronom.New(opts...)
 	}
 	if err != nil {
@@ -345,12 +348,15 @@ func viewReleases() error {
 }
 
 func getOptions() []config.Option {
+	log.Println("getting options...")
 	opts := []config.Option{}
 	// build options
 	if *droid != config.Droid() {
+		log.Println("1")
 		opts = append(opts, config.SetDroid(*droid))
 	}
 	if *container != config.Container() {
+		log.Println("2")
 		opts = append(opts, config.SetContainer(*container))
 	}
 	if *mi != "" {
@@ -379,9 +385,12 @@ func getOptions() []config.Option {
 		opts = append(opts, config.SetDetails(*details))
 	}
 	if *extend != "" {
+		log.Println("extend opt...", *extend)
 		opts = append(opts, config.SetExtend(sets.Expand(*extend)))
+		log.Println("len ", len(opts))
 	}
 	if *extendc != "" {
+		log.Println("4")
 		if *extend == "" {
 			fmt.Println(
 				`roy: warning! Unless the container extension only extends formats defined in
@@ -454,8 +463,11 @@ the DROID signature file you should also include a regular signature extension
 		opts = append(opts, config.SetRepetition(*repetition))
 	}
 	if *quiet == config.Verbose() {
+		log.Println("quiet opt...")
 		opts = append(opts, config.SetVerbose(!*quiet)) // do the opposite, because the flag is quiet and the setting is verbose!
+		log.Println("len ", len(opts))
 	}
+	log.Println("len ", len(opts))
 	// inspect options
 	if *inspectDroid != config.Droid() {
 		opts = append(opts, config.SetDroid(*inspectDroid))
@@ -490,6 +502,7 @@ the DROID signature file you should also include a regular signature extension
 		}
 		opts = append(opts, config.SetExtendC(sets.Expand(*inspectExtendc)))
 	}
+	log.Println("len ", len(opts))
 	// set home
 	if *home != config.Home() {
 		config.SetHome(*home)
@@ -550,6 +563,7 @@ func main() {
 
 	// BUILD.... extend must happen here...
 	case "build":
+		log.Println("buildy builder?")
 		err = build.Parse(os.Args[2:])
 		if err == nil {
 			if build.Arg(0) != "" {
@@ -560,6 +574,7 @@ func main() {
 		}
 
 	case "add":
+		log.Println("do we get this?")
 		err = build.Parse(os.Args[2:])
 		if err == nil {
 			if build.Arg(0) != "" {
