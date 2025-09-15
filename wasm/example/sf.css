@@ -1,0 +1,27 @@
+/* Additional CSS */
+
+h1.title {
+	font-size: 1.8rem;
+	line-height: 1.5;
+	letter-spacing: -.05rem;
+	font-weight: bold;
+	margin-bottom: 1%;
+	padding-top: 0.5%;
+}
+
+p.title {
+	margin-top: -1%;
+}
+
+h2.subtitle {
+	font-size: 1.7rem;
+	line-height: 1.6;
+	letter-spacing: 0;
+	font-weight: bold;
+	margin-bottom: 1%;
+}
+ 
+textarea.results {
+    height: 600px;
+    font-family: 'Courier New', Courier, monospace;
+}

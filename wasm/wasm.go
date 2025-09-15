@@ -5,6 +5,7 @@ package main
 import (
 	"bufio"
 	"bytes"
+	"encoding/json"
 	"fmt"
 	"hash"
 	"io"
@@ -259,11 +260,17 @@ func sfWrapper() js.Func {
 				// dirs == nil...
 				fsh := args[0]
 				err := identifyFiles(sf, r, fsh, w, h, z, o == droidOut, nil)
-
 				w.Tail()
 				if err != nil {
 					reject.Invoke(err.Error())
 				} else {
+
+					x := out
+					y, err := json.MarshalIndent(x, "", "    ")
+					if err != nil {
+						panic(err)
+					}
+					fmt.Println(y)
 					resolve.Invoke(out.String())
 				}
 			}()
@@ -283,35 +290,32 @@ func ls() {
 	fmt.Println("files:", files) // contains a list of all files in the current directory
 }
 
-func something(extension []byte) {
+func something(extension []byte) error {
 	opts := []config.Option{}
 	id, err := pronom.Newx(container, droid, extension, opts...)
-	if id != nil {
-		fmt.Println("success")
-	}
 	if err != nil {
 		fmt.Println(err)
+		return err
 	}
-	fmt.Println("idkidk...")
 	s := siegfried.New()
 	err = s.Add(id)
-	fmt.Println("idkidk 2...")
 	if err != nil {
 		fmt.Println(err)
+		return err
 	}
-	fmt.Println("here making...")
 	var b bytes.Buffer
 	foo := bufio.NewWriter(&b)
 	err = s.Savex(foo)
 	if err != nil {
 		fmt.Println("error saving sf: ", err)
+		return err
 	}
 	foo.Flush()
 	x := b.Bytes()
 	fmt.Println("have we saved? ", len(x))
 	//fmt.Println(x[:10])
 	sfcontent = x
-	ls()
+	return nil
 }
 
 func royWrapper() js.Func {
@@ -330,7 +334,7 @@ func royWrapper() js.Func {
 				//var w writer.Writer
 				//data := []byte{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16}
 				//out = append(*out, data...)
-				out.Write([]byte("Helloxx ")) // written to the resolve function...
+				out.Write([]byte("Successfully loaded new signature file")) // written to the resolve function...
 				var err error
 				//err = fmt.Errorf("ffffffffffffffff")
 
