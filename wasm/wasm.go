@@ -154,6 +154,7 @@ func identifyFile(
 	modUnix := int64(val.Get("lastModified").Int())
 	mod = time.UnixMilli(modUnix)
 	r.reset(val)
+	fmt.Println("identifysize: ", len(r.buf))
 	identifyRdr(s, r, w, name, "", r.Size(), mod, h, z, do)
 	return nil
 }
@@ -210,7 +211,9 @@ func sfWrapper() js.Func {
 			panic("SF WASM error: provide a FileSystemHandle as first argument")
 		}
 
+		fmt.Println(sfcontent[:10], len(sfcontent))
 		sf := static.Newx(sfcontent)
+
 		ls()
 		//log.Println(sfcontent)
 
@@ -301,11 +304,12 @@ func something(extension []byte) {
 	foo := bufio.NewWriter(&b)
 	err = s.Savex(foo)
 	if err != nil {
-		fmt.Println(err)
+		fmt.Println("error saving sf: ", err)
 	}
-	x := b.Len()
-	fmt.Println(x)
-	//sfcontent = x
+	x := b.Bytes()
+	fmt.Println("have we saved? ", len(x))
+	//fmt.Println(x[:10])
+	sfcontent = x
 	ls()
 }
 
@@ -347,21 +351,24 @@ func royWrapper() js.Func {
 				promise := fsh.Call("getFile")
 				val, err := await(promise)
 				if err != nil {
+					fmt.Println("fffffffffffff: ", err)
 					// handle error
 				}
 
 				s := []byte{}
 				r.reset(val)
-				i, err := r.Read(s)
+				fmt.Println("xml size: ", len(r.buf))
+				//i, err := r.Read(s)
 
-				if err != nil {
-					// handle error...
-				}
-				log.Println("read bytes: ", i)
+				//if err != nil {
+				// handle error...
+				//}
+				//log.Println("read bytes: ", i, len(s))
 
 				//s := []byte{r.ReadAll()}
 				//fmt.Println(r)
 
+				s = r.buf
 				something(s)
 
 				ls()
@@ -374,6 +381,8 @@ func royWrapper() js.Func {
 				fmt.Println("xxx works!") // written to console...
 
 				//sfcontent = sf2
+				fmt.Println(sfcontent[:10], len(sfcontent))
+
 				//[]byte{0xfd, 0x5f, 0xff}
 
 			}()

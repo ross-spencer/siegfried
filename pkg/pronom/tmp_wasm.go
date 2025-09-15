@@ -88,6 +88,11 @@ func (p *pronom) setContainersx(cf []byte) error {
 // file with any extra reports and adds that to the pronom object
 func (p *pronom) setParseablesx(dr []byte, ex []byte) error {
 	log.Println("parseables...")
+
+	if len(ex) < 1 {
+		panic("no extension...")
+	}
+
 	d, err := newDroidx(dr)
 	if err != nil {
 		return fmt.Errorf(
@@ -96,6 +101,7 @@ func (p *pronom) setParseablesx(dr []byte, ex []byte) error {
 		)
 	}
 	p.Parseable = d
+
 	e, err := newDroidx(ex)
 	if err != nil {
 		return fmt.Errorf("pronom: error loading extension file; got %s", err.Error())
