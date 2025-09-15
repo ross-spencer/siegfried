@@ -306,6 +306,7 @@ func something(extension []byte) {
 	if err != nil {
 		fmt.Println("error saving sf: ", err)
 	}
+	foo.Flush()
 	x := b.Bytes()
 	fmt.Println("have we saved? ", len(x))
 	//fmt.Println(x[:10])
@@ -368,7 +369,8 @@ func royWrapper() js.Func {
 				//s := []byte{r.ReadAll()}
 				//fmt.Println(r)
 
-				s = r.buf
+				s, _ = r.Slice(0, int(r.sz))
+				fmt.Println("data???? ", s[:10])
 				something(s)
 
 				ls()

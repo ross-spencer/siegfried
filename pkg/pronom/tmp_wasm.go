@@ -51,12 +51,15 @@ func rawx(c []byte, d []byte, e []byte) (identifier.Parseable, error) {
 		c: identifier.Blank{},
 	}
 
-	if err := p.setContainersx(c); err != nil {
-		log.Println("here.... before no container...")
-		return nil, fmt.Errorf("pronom: error loading containers; got %s\nUnless you have set `-nocontainer` you need to download a container signature file", err.Error())
-	}
+	/*
+		if err := p.setContainersx(c); err != nil {
+			log.Println("here.... before no container...")
+			return nil, fmt.Errorf("pronom: error loading containers; got %s\nUnless you have set `-nocontainer` you need to download a container signature file", err.Error())
+		}
+	*/
 
 	if err := p.setParseablesx(d, e); err != nil {
+		log.Println("parseables issue: ", err)
 		return nil, err
 	}
 	return p, nil
@@ -93,20 +96,25 @@ func (p *pronom) setParseablesx(dr []byte, ex []byte) error {
 		panic("no extension...")
 	}
 
-	d, err := newDroidx(dr)
-	if err != nil {
-		return fmt.Errorf(
-			"pronom: error loading Droid file; got %s\nYou must have a Droid file to build a signature",
-			config.Home(),
-		)
-	}
-	p.Parseable = d
+	log.Println("xml", string(ex[:20]))
+
+	/*
+		d, err := newDroidx(dr)
+		if err != nil {
+			return fmt.Errorf(
+				"pronom: error loading Droid file; got %s\nYou must have a Droid file to build a signature",
+				config.Home(),
+			)
+		}
+		p.Parseable = d
+	*/
 
 	e, err := newDroidx(ex)
 	if err != nil {
 		return fmt.Errorf("pronom: error loading extension file; got %s", err.Error())
 	}
-	p.Parseable = identifier.Join(p.Parseable, e)
+	//p.Parseable = identifier.Join(p.Parseable, e)
+	p.Parseable = e
 
 	// exclude byte signatures where also have container signatures, unless doubleup set
 	if !config.DoubleUp() {
@@ -124,6 +132,7 @@ func newDroidx(dr []byte) (*droid, error) {
 	d := &mappings.Droid{}
 	path := bytes.NewBuffer(dr)
 	buf, err := io.ReadAll(path)
+	log.Println("xml", string(buf[:20]), len(buf))
 	if err != nil {
 		return nil, err
 	}
