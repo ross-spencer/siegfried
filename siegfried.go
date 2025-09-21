@@ -39,6 +39,7 @@ import (
 	"compress/flate"
 	"fmt"
 	"io"
+	"log"
 	"os"
 	"strings"
 	"time"
@@ -118,28 +119,36 @@ func (s *Siegfried) Add(i core.Identifier) error {
 			return fmt.Errorf("siegfried: identifiers must have unique names, you already have an identifier named %s. Use the -name flag to assign a new name e.g. `roy add -name richard`", i.Name())
 		}
 	}
+	log.Println("add 1")
 	var err error
 	if s.nm, err = i.Add(s.nm, core.NameMatcher); err != nil {
 		return err
 	}
+	log.Println("add 2")
 	if s.mm, err = i.Add(s.mm, core.MIMEMatcher); err != nil {
 		return err
 	}
+	log.Println("add 3")
 	if s.cm, err = i.Add(s.cm, core.ContainerMatcher); err != nil {
 		return err
 	}
+	log.Println("add 4")
 	if s.xm, err = i.Add(s.xm, core.XMLMatcher); err != nil {
 		return err
 	}
+	log.Println("add 5")
 	if s.rm, err = i.Add(s.rm, core.RIFFMatcher); err != nil {
 		return err
 	}
+	log.Println("add 6")
 	if s.bm, err = i.Add(s.bm, core.ByteMatcher); err != nil {
 		return err
 	}
+	log.Println("add 7")
 	if s.tm, err = i.Add(s.tm, core.TextMatcher); err != nil {
 		return err
 	}
+	log.Println("add 8")
 	s.ids = append(s.ids, i)
 	return nil
 }
@@ -160,23 +169,51 @@ func (s *Siegfried) Save(path string) error {
 // SaveWriter persists a Siegfried struct to an io.Writer
 func (s *Siegfried) SaveWriter(w io.Writer) error {
 	// sprinkle magic
+
+	log.Println(config.Magic())
+	log.Println(config.Version()[0])
+	log.Println(config.Version()[1])
+
 	_, err := w.Write(append(config.Magic(), byte(config.Version()[0]), byte(config.Version()[1])))
 	if err != nil {
 		return err
 	}
+
 	// persist the siegfried
 	ls := persist.NewLoadSaver(nil)
+	ff := ls.Bytes()
+	log.Println("ggggggggggg: ", len(ff))
 	ls.SaveTime(s.C)
+	ff = ls.Bytes()
+	log.Println("ggggggggggg: ", len(ff))
 	namematcher.Save(s.nm, ls)
+	ff = ls.Bytes()
+	log.Println("ggggggggggg: ", len(ff))
 	mimematcher.Save(s.mm, ls)
+	ff = ls.Bytes()
+	log.Println("ggggggggggg: ", len(ff))
 	containermatcher.Save(s.cm, ls)
+	ff = ls.Bytes()
+	log.Println("ggggggggggg: ", len(ff))
 	xmlmatcher.Save(s.xm, ls)
+	ff = ls.Bytes()
+	log.Println("ggggggggggg: ", len(ff))
 	riffmatcher.Save(s.rm, ls)
+	ff = ls.Bytes()
+	log.Println("ggggggggggg: ", len(ff))
 	bytematcher.Save(s.bm, ls)
+	ff = ls.Bytes()
+	log.Println("ggggggggggg: ", len(ff))
 	textmatcher.Save(s.tm, ls)
+	ff = ls.Bytes()
+	log.Println("ggggggggggg: ", len(ff))
 	ls.SaveTinyUInt(len(s.ids))
+	ff = ls.Bytes()
+	log.Println("ggggggggggg before ids: ", len(ff))
 	for _, i := range s.ids {
 		i.Save(ls)
+		ff = ls.Bytes()
+		log.Println("ggggggggggg ids: ", len(ff))
 	}
 	if ls.Err != nil {
 		return ls.Err
@@ -186,15 +223,79 @@ func (s *Siegfried) SaveWriter(w io.Writer) error {
 	if err != nil {
 		return err
 	}
-	_, err = z.Write(ls.Bytes())
+	ff = ls.Bytes()
+	log.Println("ggggggggggg fin: ", len(ff), ff[:10])
+	_, err = z.Write(ff)
 	if err != nil {
 		return err
 	}
 	return z.Close()
 }
 
+// SaveWriter persists a Siegfried struct to an io.Writer
+func (s *Siegfried) Savex(w io.Writer) error {
+	// sprinkle magic
+	_, err := w.Write(append(config.Magic(), byte(config.Version()[0]), byte(config.Version()[1])))
+	if err != nil {
+		return err
+	}
+	// persist the siegfried
+	ls := persist.NewLoadSaver(nil)
+	ff := ls.Bytes()
+	log.Println("ggggggggggg: ", len(ff))
+	ls.SaveTime(s.C)
+	ff = ls.Bytes()
+	log.Println("ggggggggggg: ", len(ff))
+	namematcher.Save(s.nm, ls)
+	ff = ls.Bytes()
+	log.Println("ggggggggggg: ", len(ff))
+	mimematcher.Save(s.mm, ls)
+	ff = ls.Bytes()
+	log.Println("ggggggggggg: ", len(ff))
+	containermatcher.Save(s.cm, ls)
+	ff = ls.Bytes()
+	log.Println("ggggggggggg: ", len(ff))
+	xmlmatcher.Save(s.xm, ls)
+	ff = ls.Bytes()
+	log.Println("ggggggggggg: ", len(ff))
+	riffmatcher.Save(s.rm, ls)
+	ff = ls.Bytes()
+	log.Println("ggggggggggg: ", len(ff))
+	bytematcher.Save(s.bm, ls)
+	ff = ls.Bytes()
+	log.Println("ggggggggggg: ", len(ff))
+	textmatcher.Save(s.tm, ls)
+	ff = ls.Bytes()
+	log.Println("ggggggggggg: ", len(ff))
+	ls.SaveTinyUInt(len(s.ids))
+	ff = ls.Bytes()
+	log.Println("ggggggggggg before ids: ", len(ff))
+	for _, i := range s.ids {
+		i.Save(ls)
+		ff = ls.Bytes()
+		log.Println("ggggggggggg ids: ", len(ff))
+	}
+	if ls.Err != nil {
+		return ls.Err
+	}
+	// compress
+	z, err := flate.NewWriter(w, 1)
+	if err != nil {
+		return err
+	}
+	ff = ls.Bytes()
+	log.Println("ggggggggggg fin: ", len(ff), ff[:10])
+	_, err = z.Write(ff)
+	if err != nil {
+		return err
+	}
+	log.Println("leaving savex...")
+	return z.Close()
+}
+
 // Load creates a Siegfried struct and loads content from path
 func Load(path string) (*Siegfried, error) {
+	log.Println("path: ", path)
 	f, err := os.Open(path)
 	if err != nil {
 		return nil, fmt.Errorf("error opening signature file, got %v; try running `sf -update`", err)
@@ -225,6 +326,7 @@ func LoadReader(r io.Reader) (*Siegfried, error) {
 	if major, minor := fbuf[len(config.Magic())], fbuf[len(config.Magic())+1]; major < byte(config.Version()[0]) || (major == byte(config.Version()[0]) && minor < byte(config.Version()[1])) {
 		return nil, fmt.Errorf(errUpdateSig)
 	}
+	log.Println("new static...")
 	rb := bytes.NewBuffer(fbuf[len(config.Magic())+2:])
 	rc := flate.NewReader(rb)
 	buf, err := io.ReadAll(rc)

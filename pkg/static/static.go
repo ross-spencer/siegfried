@@ -26,3 +26,12 @@ func New() *siegfried.Siegfried {
 	sf, _ := siegfried.LoadReader(rc)
 	return sf
 }
+
+func Newx(x []byte) *siegfried.Siegfried {
+
+	// TODO: FIXUP for WASM.
+
+	rc := bytes.NewBuffer(x)
+	sf, _ := siegfried.LoadReader(rc)
+	return sf
+}

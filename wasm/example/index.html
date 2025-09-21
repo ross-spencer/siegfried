@@ -1,79 +1,117 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <!-- Skeleton viewport -->
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <!-- Skeleton specific imports -->
+      <link rel="stylesheet" href="normalize.css">
+      <link rel="stylesheet" href="skeleton.css">
+      <!-- CSS exceptions -->
+      <link rel="stylesheet" href="sf.css">
+      <script src="example.js"></script>
+      <script src="wasm_exec.js"></script>
+      <script>
+         const go = new window.Go();
 
-<head>
-    <script src="example.js"></script>
-    <script src="wasm_exec.js"></script>
-    <script>
-        const go = new window.Go();
-
-        WebAssembly.instantiateStreaming(
-            fetch("sf.wasm"),
-            go.importObject
-        ).then(
-            (obj) => {
-                go.run(obj.instance);
-            }
-        );
-    </script>
-</head>
-
-<body>
-    <h1>Siegfried WASM</h1>
-    <p>This page demonstrates how to use siegfried's wasm build. You can download the latest sf.wasm file from the <a
-            href="https://github.com/richardlehane/siegfried/releases">releases page</a>.</p>
-    <p>The wasm file attaches an "identify" function into your environment.</p>
-    <p>Call this function with:</p>
-    <p>
-    <pre>identify(FileSystemHandle, ...options)</pre>
-    </p>
-    <p>The return value is a <a
-            href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a>
-        that resolves to a string value (results formatted in either JSON, YAML, CSV or DROID CSV).</p>
-    <p>The first argument to identify() must be a <a
-            href="https://developer.mozilla.org/en-US/docs/Web/API/FileSystemHandle">FileSystemHandle</a> (file or
-        directory). If you provide a directory, the identify function will walk the directory, and all its
-        subdirectories, recursively, identifying
-        all files within it.</p>
-    <p>You can add the following additional arguments in any order:
-    <p>
-    <ul>
-        <li>the default output format is JSON but you can change that by giving "yaml", "csv", or
-            "droid" as arguments</li>
-        <li>to include checksums in your results, give either "md5", "sha1", "sha256", "sha512" or "crc" as
-            arguments</li>
-        <li>to decompress archive formats (zip, tar.gz, WARC, ARC), give "z" as an argument.</li>
-    </ul>
-    <p>For example:</p>
-    <p>
-    <pre>identify(FSH, "z", "yaml", "sha1")</pre>
-    </p>
-    <h4>Try it</h4>
-    <p>Format (format): <select name="format" id="format">
-            <option value="json">json</option>
-            <option value="yaml">yaml</option>
-            <option value="csv">csv</option>
-            <option value="droid">droid</option>
-        </select></p>
-    <p>Hash (hash): <select name="hash" id="hash">
-            <option value="none">none</option>
-            <option value="md5">md5</option>
-            <option value="sha1">sha1</option>
-            <option value="sha256">sha256</option>
-            <option value="sha512">sha512</option>
-            <option value="crc">crc</option>
-        </select></p>
-    <p>Scan within archives (z):
-        <input type="radio" name="z" value="true"> true <input type="radio" name="z" value="false" checked> false
-    </p>
-    <button id="butOpen" type="button">
-        Identify file
-    </button>
-    <button id="butDirectory" type="button">
-        Identify directory
-    </button>
-    <h4>Results:</h4>
-    <textarea id="results" name="results" rows="40" cols="60" readonly>
-     </textarea>
-</body>
-
+         WebAssembly.instantiateStreaming(
+             fetch("sf.wasm"),
+             go.importObject
+         ).then(
+             (obj) => {
+                 go.run(obj.instance);
+             }
+         );
+      </script>
+   </head>
+   <body>
+      <div class="container" style="margin-bottom: 5%;">
+         <div class="row">
+            <div class="two columns" style="margin-top: 5%;">
+               <h1 style="color: #cc372f; font-style: bold;">✎‖</h1>
+            </div>
+            <div class="ten columns" style="margin-top: 5%; margin-left: -3%;">
+               <h1 class="title">Signature testing environment: WASM</h1>
+               <p class="title">
+                  For testing DROID compatible signatures in the safety of your own browser.
+               </p>
+               <hr>
+            </div>
+         </div>
+         <div class="row">
+            <div class="twelve columns" style="margin-top: 1%;">
+               <h2 class="subtitle">Introduction</h2>
+               <p>
+                  To allow you to test your new file format signatures Siegfried and its
+                  signature editing utility Roy has been compiled into this web-page. Load
+                  new signatures and test them against your own data before submitting
+                  them to The National Archves, UK.
+               </p>
+               <p>
+                  WebAssembly (WASM) is a technology that enables you to run low-level
+                  code in the safety of your own browser, protecting your computer and
+                  your data.
+               </p>
+            </div>
+         </div>
+         <div class="row">
+            <div class="twelve columns" style="margin-top: 1%;">
+               <h2 class="subtitle">Config</h2>
+            </div>
+         </div>
+         <div class="row">
+            <div class="four columns" style="margin-top: 1%;">
+               <label for="format">Format</label>
+               <select name="format" id="format">
+                  <option value="yaml">yaml</option>
+                  <!--
+                     <option value="json">json</option>
+                     <option value="csv">csv</option>
+                     <option value="droid">droid</option>
+                     -->
+               </select>
+            </div>
+            <div class="four columns" style="margin-top: 1%;">
+               <label for="hash">Hash</label>
+               <select name="hash" id="hash">
+                  <option value="none">none</option>
+                  <option value="md5">md5</option>
+                  <option value="sha1">sha1</option>
+                  <option value="sha256">sha256</option>
+                  <option value="sha512">sha512</option>
+                  <option value="crc">crc</option>
+               </select>
+            </div>
+            <div class="four columns" style="margin-top: 1%;">
+               <label for="z">Scan within archives</label>
+               <input id="archives" type="radio" name="z" value="true"> <span class="label-body">true</span>
+               &nbsp;&nbsp;
+               <input id="archives" type="radio" name="z" value="false" checked> <span class="label-body">false</span>
+            </div>
+         </div>
+         <div class="row">
+            <div class="twelve columns" style="margin-top: 1%;">
+               <h2 class="subtitle">Run Siegfried and Roy</h2>
+            </div>
+         </div>
+         <div class="row">
+            <div class="four columns">
+               <input class="button u-full-width" id="butOpen" type="button" value="Siegfried: File ID">
+            </div>
+            <div class="four columns">
+               <input class="button u-full-width" id="butDirectory" type="button" value="Siegfried: Directory ID">
+            </div>
+            <div class="four columns">
+               <input class="button u-full-width" id="butRoy" type="button" value="Roy: Load signature">
+            </div>
+         </div>
+         <div class="row">
+            <div class="twelve columns" style="margin-top: 1%;">
+               <hr>
+               <h3>Results</h3>
+               <textarea id="results" class="results" name="results" rows="200" cols="70" readonly></textarea>
+            </div>
+         </div>
+      </div>
+   </body>
 </html>

@@ -117,6 +117,7 @@ func New(p Parseable, zip string, extra ...string) *Base {
 }
 
 func (b *Base) Save(ls *persist.LoadSaver) {
+	// TODO: DETAILS NEED TO MAKE IT THROUGH TO HERE FOR WASM...
 	ls.SaveString(b.name)
 	ls.SaveString(b.details)
 	ls.SaveTinyInt(int(b.multi))

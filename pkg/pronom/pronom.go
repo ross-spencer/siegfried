@@ -74,11 +74,16 @@ func raw() (identifier.Parseable, error) {
 		c: identifier.Blank{},
 	}
 	// apply no container rule
-	if !config.NoContainer() {
-		if err := p.setContainers(); err != nil {
-			return nil, fmt.Errorf("pronom: error loading containers; got %s\nUnless you have set `-nocontainer` you need to download a container signature file", err.Error())
+
+	/*
+		if !config.NoContainer() {
+			if err := p.setContainers(); err != nil {
+				log.Println("here.... before no container...")
+				return nil, fmt.Errorf("pronom: error loading containers; got %s\nUnless you have set `-nocontainer` you need to download a container signature file", err.Error())
+			}
 		}
-	}
+	*/
+
 	if err := p.setParseables(); err != nil {
 		return nil, err
 	}
@@ -87,6 +92,7 @@ func raw() (identifier.Parseable, error) {
 
 // Pronom creates a pronom object
 func NewPronom() (identifier.Parseable, error) {
+	log.Println("in NewPRONOM")
 	p, err := raw()
 	if err != nil {
 		return nil, err
@@ -96,35 +102,44 @@ func NewPronom() (identifier.Parseable, error) {
 
 // set identifiers joins signatures in the DROID signature file with any extra reports and adds that to the pronom object
 func (p *pronom) setParseables() error {
-	d, err := newDroid(config.Droid())
-	if err != nil {
-		return fmt.Errorf("pronom: error loading Droid file; got %s\nYou must have a Droid file to build a signature", config.Home())
-	}
+	log.Println("parseables...")
+
+	/*
+		d, err := newDroid(config.Droid())
+		if err != nil {
+			return fmt.Errorf(
+				"pronom: error loading Droid file; got %s\nYou must have a Droid file to build a signature",
+				config.Home(),
+			)
+		}*/
 
 	// if noreports set
-	if config.Reports() == "" {
-		p.Parseable = d
-	} else { // otherwise build from reports
-		// get list of puids that applies limit or exclude filters (actual filtering of Parseable delegated to core/identifier)
-		puids := d.IDs()
-		if config.HasLimit() {
-			puids = config.Limit(puids)
-		} else if config.HasExclude() {
-			puids = config.Exclude(puids)
-		}
-		r, err := newReports(puids, d.idsPuids())
-		if err != nil {
-			return fmt.Errorf("pronom: error loading reports; got %s\nYou must download PRONOM reports to build a signature (unless you use the -noreports flag). You can use `roy harvest` to download reports", err.Error())
-		}
-		p.Parseable = r
-	}
-	// add extensions
+	/*
+		if config.Reports() == "" {
+			p.Parseable = d
+		} else { // otherwise build from reports
+			// get list of puids that applies limit or exclude filters (actual filtering of Parseable delegated to core/identifier)
+			puids := d.IDs()
+			if config.HasLimit() {
+				puids = config.Limit(puids)
+			} else if config.HasExclude() {
+				puids = config.Exclude(puids)
+			}
+			r, err := newReports(puids, d.idsPuids())
+			if err != nil {
+				return fmt.Errorf("pronom: error loading reports; got %s\nYou must download PRONOM reports to build a signature (unless you use the -noreports flag). You can use `roy harvest` to download reports", err.Error())
+			}
+			p.Parseable = r
+		}*/
+	// TODO: add extensions
+	log.Println("add extensions...")
 	for _, v := range config.Extend() {
+		log.Println("extend:", v)
 		e, err := newDroid(v)
 		if err != nil {
 			return fmt.Errorf("pronom: error loading extension file; got %s", err.Error())
 		}
-		p.Parseable = identifier.Join(p.Parseable, e)
+		p.Parseable = e
 	}
 	// exclude byte signatures where also have container signatures, unless doubleup set
 	if !config.DoubleUp() {
@@ -136,7 +151,10 @@ func (p *pronom) setParseables() error {
 	return nil
 }
 
+// TODO: extend... SEE IF WE CAN JUST LOAD THE EXTENDED SIGNATURE
+// FILE HERE... e.g. EXTEND EXCLUSIVE...
 func newDroid(path string) (*droid, error) {
+	log.Println("new droid... ", path)
 	d := &mappings.Droid{}
 	if err := openXML(path, d); err != nil {
 		return nil, fmt.Errorf("%s: %s", err.Error(), path)
@@ -358,6 +376,7 @@ func TypeSets(p1, p2, p3 string) error {
 
 // Extension set writes a sets file that links extensions to IDs.
 func ExtensionSet(path string) error {
+	log.Println("extset")
 	d, err := newDroid(config.Droid())
 	if err != nil {
 		return err
@@ -383,6 +402,7 @@ func ExtensionSet(path string) error {
 
 func openXML(path string, els interface{}) error {
 	buf, err := ioutil.ReadFile(path)
+	log.Println("xml", string(buf[:20]), len(buf))
 	if err != nil {
 		return err
 	}

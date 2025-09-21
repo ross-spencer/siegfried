@@ -14,10 +14,10 @@ function getArgs() {
     }
     return args;
 }
-
+ 
 window.onload = () => {
     document.getElementById('butOpen').addEventListener('click', () => {
-
+ 
         window.showOpenFilePicker().then(handles => {
             for (const idx in handles) {
                 const args = getArgs();
@@ -40,6 +40,21 @@ window.onload = () => {
             }).catch((err) => {
                 document.getElementById('results').value = err;
             });
+        }
+        );
+    });
+
+    document.getElementById('butRoy').addEventListener('click', () => {
+        window.showOpenFilePicker().then(handles => {
+            for (const idx in handles) {
+                const args = getArgs();
+                args.unshift(handles[idx]);
+                sigload.apply(null, args).then(result => {
+                    document.getElementById('results').value = result;
+                }).catch((err) => {
+                    document.getElementById('results').value = err;
+                });
+            };
         }
         );
     });
