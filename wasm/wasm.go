@@ -3,7 +3,7 @@
 package main
 
 import (
-	"bufio"
+	//"bufio"
 	"bytes"
 	"encoding/json"
 	"fmt"
@@ -34,6 +34,10 @@ const (
 	csvOut
 	droidOut
 )
+
+var sf *siegfried.Siegfried
+var newSF *siegfried.Siegfried
+var loadFromRoy bool
 
 func opts(args []js.Value) (output, checksum.HashTyp, bool) {
 
@@ -212,11 +216,13 @@ func sfWrapper() js.Func {
 			panic("SF WASM error: provide a FileSystemHandle as first argument")
 		}
 
-		fmt.Println(sfcontent[:10], len(sfcontent))
-		sf := static.Newx(sfcontent)
-
-		ls()
-		//log.Println(sfcontent)
+		if loadFromRoy && newSF != nil {
+			fmt.Println("loading new signature file crerated by WASM Roy")
+			sf = newSF
+		} else {
+			fmt.Println("loading the default signature file")
+			sf = static.Newx(sfcontent)
+		}
 
 		promiseHandler := js.FuncOf(func(v js.Value, x []js.Value) interface{} {
 			resolve := x[0]
@@ -303,6 +309,16 @@ func something(extension []byte) error {
 		fmt.Println(err)
 		return err
 	}
+
+	loadFromRoy = true
+	newSF = s
+
+	return nil
+
+	/* We don't need this code here because we don't need to save
+	   the file anywhere. That being said... Adding the signature
+	   file is still slow up to here...
+
 	var b bytes.Buffer
 	foo := bufio.NewWriter(&b)
 	err = s.Savex(foo)
@@ -315,7 +331,9 @@ func something(extension []byte) error {
 	fmt.Println("have we saved? ", len(x))
 	//fmt.Println(x[:10])
 	sfcontent = x
+
 	return nil
+	*/
 }
 
 func royWrapper() js.Func {

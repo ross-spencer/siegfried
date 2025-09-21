@@ -13,7 +13,7 @@
       <script src="wasm_exec.js"></script>
       <script>
          const go = new window.Go();
-         
+
          WebAssembly.instantiateStreaming(
              fetch("sf.wasm"),
              go.importObject
@@ -42,15 +42,15 @@
             <div class="twelve columns" style="margin-top: 1%;">
                <h2 class="subtitle">Introduction</h2>
                <p>
-                  To allow you to test your new file format signatures Siegfried and its 
+                  To allow you to test your new file format signatures Siegfried and its
                   signature editing utility Roy has been compiled into this web-page. Load
                   new signatures and test them against your own data before submitting
-                  them to The National Archves, UK. 
+                  them to The National Archves, UK.
                </p>
                <p>
-                  WebAssembly (WASM) is a technology that enables you to run low-level 
-                  code in the safety of your own browser, protecting your computer and 
-                  your data. 
+                  WebAssembly (WASM) is a technology that enables you to run low-level
+                  code in the safety of your own browser, protecting your computer and
+                  your data.
                </p>
             </div>
          </div>
@@ -84,7 +84,7 @@
             </div>
             <div class="four columns" style="margin-top: 1%;">
                <label for="z">Scan within archives</label>
-               <input id="archives" type="radio" name="z" value="true"> <span class="label-body">true</span> 
+               <input id="archives" type="radio" name="z" value="true"> <span class="label-body">true</span>
                &nbsp;&nbsp;
                <input id="archives" type="radio" name="z" value="false" checked> <span class="label-body">false</span>
             </div>

@@ -98,23 +98,20 @@ func (p *pronom) setParseablesx(dr []byte, ex []byte) error {
 
 	log.Println("xml", string(ex[:20]))
 
-	/*
-		d, err := newDroidx(dr)
-		if err != nil {
-			return fmt.Errorf(
-				"pronom: error loading Droid file; got %s\nYou must have a Droid file to build a signature",
-				config.Home(),
-			)
-		}
-		p.Parseable = d
-	*/
+	d, err := newDroidx(dr)
+	if err != nil {
+		return fmt.Errorf(
+			"pronom: error loading Droid file; got %s\nYou must have a Droid file to build a signature",
+			config.Home(),
+		)
+	}
+	p.Parseable = d
 
 	e, err := newDroidx(ex)
 	if err != nil {
 		return fmt.Errorf("pronom: error loading extension file; got %s", err.Error())
 	}
-	//p.Parseable = identifier.Join(p.Parseable, e)
-	p.Parseable = e
+	p.Parseable = identifier.Join(p.Parseable, e)
 
 	// exclude byte signatures where also have container signatures, unless doubleup set
 	if !config.DoubleUp() {
