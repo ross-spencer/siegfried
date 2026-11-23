@@ -24,7 +24,7 @@ import (
 
 // TestDefaultLang the simplest test to make sure that 'some' default
 // language is set.
-func TestDefaultLangXX(t *testing.T) {
+func TestDefaultLang(t *testing.T) {
 	expected := "en"
 	if wikidataLang != "en" {
 		t.Errorf(
